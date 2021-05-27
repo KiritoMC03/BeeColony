@@ -11,16 +11,16 @@ TagManager:
   - 
   - Water
   - UI
+  - Backgroung
+  - 
+  - Buildings
+  - 
+  - Resources
+  - 
+  - Bees
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - UI
   - 
   - 
   - 
@@ -40,4 +40,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 419515463
+    locked: 0
+  - name: Buildings
+    uniqueID: 2178210701
+    locked: 0
+  - name: Bees
+    uniqueID: 3931010759
+    locked: 0
+  - name: New Layer
+    uniqueID: 3498041107
+    locked: 0
+  - name: New Layer
+    uniqueID: 2932339139
+    locked: 0
+  - name: UI
+    uniqueID: 760775595
     locked: 0
