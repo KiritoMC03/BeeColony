@@ -41,7 +41,9 @@ namespace ObjectPool
             InitPool();
         }
 
-        private void InitPool()
+        private void InitPool() //вот это уже страшно
+        // ближе к математике.
+        // здесь идёт работа чисто с сохранением и загрузкой объектов
         {
             _pools = new Dictionary<ObjectInfo.ObjectType, Pool>();
 
@@ -51,7 +53,7 @@ namespace ObjectPool
                 _tempContainer.name = obj.Type.ToString() + "_Pool";
 
                 _pools[obj.Type] = new Pool(_tempContainer.transform);
-
+// плюс-минус
                 for (int i = 0; i < obj.StartCount; i++)
                 {
                     _tempStartGameObject = InstantiateObject(obj.Type, _tempContainer.transform);

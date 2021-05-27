@@ -40,6 +40,7 @@ public abstract class Motor : MonoBehaviour
         }
     }
 
-    protected abstract Vector2 Move();
+    protected abstract Vector2 Move(); // вот это отвечает за движение.
+                                       // Это - общий метод.
     protected virtual void AwakeWork() {}
 }
