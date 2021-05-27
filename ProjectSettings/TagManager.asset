@@ -47,13 +47,13 @@ TagManager:
   - name: Buildings
     uniqueID: 2178210701
     locked: 0
-  - name: Bees
+  - name: Resources
     uniqueID: 3931010759
     locked: 0
   - name: New Layer
     uniqueID: 3498041107
     locked: 0
-  - name: New Layer
+  - name: Bees
     uniqueID: 2932339139
     locked: 0
   - name: UI
