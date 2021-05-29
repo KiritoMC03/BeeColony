@@ -21,5 +21,16 @@ namespace Utils
             var componentsList = monoBehaviours.Select(behaviour => behaviour.GetComponent(typeof(I)));
             return componentsList.OfType<I>().ToList();
         }
+        
+        public T GetSafeComponent<T>()
+            where T : Component
+        {
+            var component = GetComponent<T>();
+            if(component == null)
+            {
+                Debug.LogError("Expected to find component of type " + typeof(T) + " but found none.", gameObject);
+            }
+            return component;
+        }
     }
 }

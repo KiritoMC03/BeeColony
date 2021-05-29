@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using BeeColony.Core;
+using Utils;
 
-public class Flower : MonoBehaviour
+public class Flower : Resource
 {
     
 }

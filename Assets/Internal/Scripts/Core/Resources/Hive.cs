@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Utils;
 
-public class Hive : MonoBehaviour
+public class Hive : MonoBehaviourBase
 {
     
 }

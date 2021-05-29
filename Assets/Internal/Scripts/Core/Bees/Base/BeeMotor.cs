@@ -1,17 +1,17 @@
 using UnityEngine;
 
-namespace BeeColony.Core.Bees
+namespace BeeColony.Core.Bees.Base
 {
-    public class BeeMotor : Motor // мотор пчелки зависит от общего мотора...
+    public class BeeMotor : Motor
     {
         private Vector2 _input;
 
-        protected override Vector2 Move() // а вот это отвечает за движение именно пчелки
+        public override Vector2 Move()
         {
-            var movement = (Vector3) (GetInput() * (Time.deltaTime * _moveSpeed));
-            _transform.position += movement;
+            var movement = (Vector3) (GetInput() * (Time.deltaTime * moveSpeed));
+            MyTransform.position += movement;
             return movement;
-        } //)))))))))))))))))))))
+        }
 
         private static Vector2 GetInput()
         {

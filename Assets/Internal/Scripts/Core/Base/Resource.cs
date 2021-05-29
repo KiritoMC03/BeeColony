@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Internal.Scripts.Core.Base
+namespace BeeColony.Core
 {
-    public class Resource : MonoBehaviour
+    public abstract class Resource : MonoBehaviour
     {
         
     }

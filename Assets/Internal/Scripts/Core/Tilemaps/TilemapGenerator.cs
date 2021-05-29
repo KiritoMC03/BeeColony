@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Utils;
 
-public class TilemapGenerator : MonoBehaviour
+public class TilemapGenerator : MonoBehaviourBase
 {
     public static TilemapGenerator Instance;
     

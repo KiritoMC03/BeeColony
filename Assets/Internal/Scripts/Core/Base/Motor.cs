@@ -1,46 +1,47 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Utils;
 
-public abstract class Motor : MonoBehaviour
+namespace BeeColony.Core
 {
-    public UnityEvent OnDirectionChange;
-    
-    /// <returns>
-    /// Vector2.right or Vector2.left
-    /// </returns>
-    public Vector2 LastDirection { get; private set; }
-    
-    [SerializeField] protected float _moveSpeed = 5f;
-    
-    protected Transform _transform;
-    
-    private Vector2 _tempDirection = new Vector2();
-    
-    private void Awake()
+    public abstract class Motor : MonoBehaviourBase
     {
-        InitFields();
-        AwakeWork();
-        LastDirection = new Vector2(_transform.localScale.x, 0).normalized;
-    }
-    
-    private void InitFields()
-    {
-        _transform = transform;
-    }
-    
-    private void Update()
-    {
-        var moveResult = Move();
-        _tempDirection = new Vector2(moveResult.x, 0).normalized;
-        
-        if (_tempDirection.x != 0f && _tempDirection != LastDirection)
+        public UnityEvent onDirectionChange;
+
+        [SerializeField] protected float moveSpeed = 5f;
+        protected Transform MyTransform;
+        protected Rigidbody2D MyRigidbody;
+
+        private Vector2 _tempDirection = new Vector2();
+
+        private void Awake()
         {
-            OnDirectionChange?.Invoke();
-            LastDirection = _tempDirection;
+            InitFields();
+            AwakeWork();
+        }
+
+        private void InitFields()
+        {
+            MyTransform = transform;
+            MyRigidbody = GetSafeComponent<Rigidbody2D>();
+        }
+
+        public abstract Vector2 Move();
+
+        /// <summary> Using in FixedUpdate. </summary>
+        public virtual void MoveTo(Vector3 position)
+        {
+            MyRigidbody.velocity = Vector3.zero;
+            MyRigidbody.velocity = (position - MyTransform.position) * (moveSpeed * Time.deltaTime);
+        }
+
+        public virtual void Stop()
+        {
+            MyRigidbody.velocity = Vector3.zero;
+        }
+        
+        protected virtual void AwakeWork()
+        {
         }
     }
-
-    protected abstract Vector2 Move(); // вот это отвечает за движение.
-                                       // Это - общий метод.
-    protected virtual void AwakeWork() {}
 }

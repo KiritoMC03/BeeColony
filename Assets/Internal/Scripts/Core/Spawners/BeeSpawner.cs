@@ -1,10 +1,15 @@
 using UnityEngine;
+using Utils;
+using BeeColony.Core.Bees.Base;
 
-public class BeeSpawner : MonoBehaviour
+namespace BeeColony.Core.Spawners
 {
-    [SerializeField] private Bee beePrefab;
-
-    public void Spawn()
+    public class BeeSpawner : MonoBehaviourBase
     {
+        [SerializeField] private BeeBase BeeBasePrefab;
+
+        public void Spawn()
+        {
+        }
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using Utils;
 
-namespace BeeColony.Core.Bees
+namespace BeeColony.Core.Bees.Base
 {
     [RequireComponent(typeof(Animator))]
     public class BeeAnimation : MonoBehaviourBase
@@ -26,7 +26,7 @@ namespace BeeColony.Core.Bees
 
         private void Start()
         {
-            beeMotor.OnDirectionChange.AddListener(InvertDirection);
+            beeMotor.onDirectionChange.AddListener(InvertDirection);
             Play(startingAnimation.name);
         }
 
@@ -43,7 +43,7 @@ namespace BeeColony.Core.Bees
 
         private void OnDisable()
         {
-            beeMotor.OnDirectionChange.RemoveAllListeners();
+            beeMotor.onDirectionChange.RemoveAllListeners();
         }
     }
 }
