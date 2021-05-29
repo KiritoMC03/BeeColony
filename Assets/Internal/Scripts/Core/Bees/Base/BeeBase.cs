@@ -21,12 +21,12 @@ namespace BeeColony.Core.Bees.Base
         private void Awake()
         {
             seenFlowerCache.OnSeen.AddListener(ChangeCurrentTargetFlower);
-            resourceCollector.OnResourceCollected.AddListener(FindNextFlower);
+            resourceCollector.OnResourceCollected.AddListener(GoToHive);
         }
 
         private void FixedUpdate()
         {
-            if (_seeFlower && !resourceCollector.IsCollected)
+            if (_seeFlower && !resourceCollector.InProcessOfCollecting)
             {
                 motor.MoveTo(_target);
             }
@@ -48,6 +48,11 @@ namespace BeeColony.Core.Bees.Base
             seenFlowerCache.OnSeen.RemoveAllListeners();
             _target = _currentTargetFlower.transform.position;
             _seeFlower = true;
+        }
+
+        private void GoToHive()
+        {
+            _target = Vector3.zero;
         }
 
         private void FindNextFlower()

@@ -13,15 +13,15 @@ namespace BeeColony.Core.Bees.Base
         [SerializeField] private SeenFlowerCache seenFlowerCache;
         
         private bool _resourceNoticed = false;
-        public bool IsCollected { get; private set; } = false;
+        public bool InProcessOfCollecting { get; private set; } = false;
+        public bool IsItCollected { get; private set; } = false;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             var resource = other.GetComponent<Resource>();
             if (resource == seenFlowerCache.GetLink())
             {
-                Debug.Log("Collecting!");
-                IsCollected = true;
+                InProcessOfCollecting = true;
                 StartCoroutine(CollectRoutine(resource, 8));
             }
         }
@@ -32,8 +32,9 @@ namespace BeeColony.Core.Bees.Base
             var f = seenFlowerCache.ExtractFlower();
             Destroy(resource.gameObject);
             
+            InProcessOfCollecting = false;
+            IsItCollected = true;
             OnResourceCollected?.Invoke();
-            IsCollected = false;
         }
     }
 }

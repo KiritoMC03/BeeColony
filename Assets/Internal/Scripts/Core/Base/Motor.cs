@@ -39,7 +39,7 @@ namespace BeeColony.Core
             {
                 direction = Vector2.zero;
             }
-            MyRigidbody.velocity = direction * (moveSpeed * Time.deltaTime);
+            MyRigidbody.velocity = direction.normalized * (moveSpeed * Time.deltaTime);
             ChangeMoveDirection(direction);
         }
 
