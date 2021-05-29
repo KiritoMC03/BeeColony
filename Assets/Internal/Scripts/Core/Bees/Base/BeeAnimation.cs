@@ -8,6 +8,7 @@ namespace BeeColony.Core.Bees.Base
     {
         [SerializeField] private AnimationClip startingAnimation;
         [SerializeField] private BeeMotor beeMotor;
+        [SerializeField] protected bool IsSeeRight = true;
         private Animator _animator;
         private Transform _transform;
         private Vector3 _direction;
@@ -37,8 +38,13 @@ namespace BeeColony.Core.Bees.Base
 
         private void InvertDirection()
         {
-            _direction = new Vector3(-_direction.x, _direction.y, _direction.z);
-            _transform.localScale = _direction;
+            Debug.Log("x: " + beeMotor.LastDirection.x);
+            if ((beeMotor.LastDirection.x < 0f && IsSeeRight) || (beeMotor.LastDirection.x > 0f && !IsSeeRight))
+            {
+                _direction = new Vector3(-_direction.x, _direction.y, _direction.z);
+                _transform.localScale = _direction;
+                IsSeeRight.Invert();
+            }
         }
 
         private void OnDisable()

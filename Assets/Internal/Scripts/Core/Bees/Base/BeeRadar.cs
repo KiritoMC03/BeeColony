@@ -30,6 +30,7 @@ namespace BeeColony.Core.Bees.Base
             var flower = other.GetComponent<Flower>();
             if (flower != null)
             {
+                Debug.Log("flower!!!");
                 Debug.Log("flower: " + flower == null + " or not");
                 seenFlowerCache.AddFlower(flower);
             }

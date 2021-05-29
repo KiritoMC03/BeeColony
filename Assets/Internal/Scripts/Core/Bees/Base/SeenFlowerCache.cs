@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 using Utils;
 
@@ -13,6 +14,7 @@ namespace BeeColony.Core.Bees.Base
         {
             if(_flower != null) return;
             _flower = flower;
+            Debug.Log("flower add!!!");
             OnSeen?.Invoke();
         }
         
@@ -20,7 +22,13 @@ namespace BeeColony.Core.Bees.Base
         {
             var flower = _flower;
             _flower = null;
+            Debug.Log("flower extract!!!");
             return flower;
+        }
+
+        public Flower GetLink()
+        {
+            return _flower;
         }
     }
 }

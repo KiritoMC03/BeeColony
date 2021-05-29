@@ -13,7 +13,7 @@ namespace BeeColony.Core
 
         [SerializeField] protected float moveSpeed = 5f;
         protected Transform MyTransform;
-        protected Rigidbody2D MyRigidbody;
+        protected Rigidbody2D MyRigidbody;  
 
         private void Awake()
         {
@@ -50,11 +50,11 @@ namespace BeeColony.Core
         
         protected virtual Vector2 ChangeMoveDirection(Vector2 currentDirection)
         {
-            var differentDirections = !Mathf.Approximately(currentDirection.normalized.x, LastDirection.x);
-            if (currentDirection.x != 0f && differentDirections)
+            var different = currentDirection.normalized.x - LastDirection.x;
+            if (currentDirection.x != 0f && (different > 0.1f) || different < -0.1f)
             {
-                OnDirectionChange?.Invoke();
                 LastDirection = currentDirection.normalized;
+                OnDirectionChange?.Invoke();
             }
 
             return LastDirection;

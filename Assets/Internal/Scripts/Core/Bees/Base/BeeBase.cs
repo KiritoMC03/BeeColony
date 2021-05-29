@@ -38,7 +38,7 @@ namespace BeeColony.Core.Bees.Base
 
         private void ChangeCurrentTargetFlower()
         {
-            _currentTargetFlower = seenFlowerCache.ExtractFlower();
+            _currentTargetFlower = seenFlowerCache.GetLink();
             if (_currentTargetFlower == null)
             {
                 _seeFlower = false;
