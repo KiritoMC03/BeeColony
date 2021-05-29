@@ -26,7 +26,7 @@ namespace BeeColony.Core.Bees.Base
 
         private void Start()
         {
-            beeMotor.onDirectionChange.AddListener(InvertDirection);
+            beeMotor.OnDirectionChange.AddListener(InvertDirection);
             Play(startingAnimation.name);
         }
 
@@ -43,7 +43,7 @@ namespace BeeColony.Core.Bees.Base
 
         private void OnDisable()
         {
-            beeMotor.onDirectionChange.RemoveAllListeners();
+            beeMotor.OnDirectionChange.RemoveAllListeners();
         }
     }
 }

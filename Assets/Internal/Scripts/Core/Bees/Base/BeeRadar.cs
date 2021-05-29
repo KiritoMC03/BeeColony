@@ -6,7 +6,7 @@ namespace BeeColony.Core.Bees.Base
 {
     public class BeeRadar : MonoBehaviourBase
     {
-        [SerializeField] private SeenFlowersCache SeenFlowersCache;
+        [SerializeField] private SeenFlowerCache seenFlowerCache;
         private Collider2D _collider;
 
         private void Awake()
@@ -27,12 +27,11 @@ namespace BeeColony.Core.Bees.Base
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("Trigger");
             var flower = other.GetComponent<Flower>();
             if (flower != null)
             {
-                Debug.Log("flower");
-                SeenFlowersCache.AddFlower(flower);
+                Debug.Log("flower: " + flower == null + " or not");
+                seenFlowerCache.AddFlower(flower);
             }
         }
     }

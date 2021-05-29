@@ -948,7 +948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1368168484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,6 +979,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1393827536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224178591140640441, guid: 804ca8726abaf664e959c6b05bf3a952, type: 3}
+  m_PrefabInstance: {fileID: 190245324568120849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2777396e59ce488596d0a635fb035328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1634477437
 GameObject:
   m_ObjectHideFlags: 0
@@ -26810,6 +26821,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1113987546, guid: 804ca8726abaf664e959c6b05bf3a952, type: 3}
+      propertyPath: seenFlowerCache
+      value: 
+      objectReference: {fileID: 1393827536}
+    - target: {fileID: 1113987546, guid: 804ca8726abaf664e959c6b05bf3a952, type: 3}
       propertyPath: resourceCollector
       value: 
       objectReference: {fileID: 1872164652}
@@ -26835,11 +26850,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 190245324062310697, guid: 804ca8726abaf664e959c6b05bf3a952, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.47
+      value: -6.38
       objectReference: {fileID: 0}
     - target: {fileID: 190245324062310697, guid: 804ca8726abaf664e959c6b05bf3a952, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.76
+      value: -3.92
       objectReference: {fileID: 0}
     - target: {fileID: 190245324062310697, guid: 804ca8726abaf664e959c6b05bf3a952, type: 3}
       propertyPath: m_LocalPosition.z
@@ -26873,6 +26888,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3385213008400134419, guid: 804ca8726abaf664e959c6b05bf3a952, type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791451347955172297, guid: 804ca8726abaf664e959c6b05bf3a952, type: 3}
+      propertyPath: seenFlowerCache
+      value: 
+      objectReference: {fileID: 1393827536}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 804ca8726abaf664e959c6b05bf3a952, type: 3}
 --- !u!1001 &5073392971429170263

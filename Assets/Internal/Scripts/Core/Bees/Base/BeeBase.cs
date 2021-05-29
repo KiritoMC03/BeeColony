@@ -8,7 +8,7 @@ namespace BeeColony.Core.Bees.Base
 {
     public class BeeBase : MonoBehaviourBase
     {
-        [SerializeField] private SeenFlowersCache seenFlowersCache;
+        [SerializeField] private SeenFlowerCache seenFlowerCache;
         [SerializeField] private BeeMotor motor;
         [SerializeField] private BeeResourceCollector resourceCollector;
         [SerializeField] private ParticleSystem pollen;
@@ -20,7 +20,8 @@ namespace BeeColony.Core.Bees.Base
 
         private void Awake()
         {
-            seenFlowersCache.OnSeen.AddListener(ChangeCurrentTargetFlower);
+            seenFlowerCache.OnSeen.AddListener(ChangeCurrentTargetFlower);
+            resourceCollector.OnResourceCollected.AddListener(FindNextFlower);
         }
 
         private void FixedUpdate()
@@ -37,11 +38,23 @@ namespace BeeColony.Core.Bees.Base
 
         private void ChangeCurrentTargetFlower()
         {
-            _currentTargetFlower = seenFlowersCache.ExtractFlower();
-            seenFlowersCache.OnSeen?.RemoveAllListeners();
+            _currentTargetFlower = seenFlowerCache.ExtractFlower();
+            if (_currentTargetFlower == null)
+            {
+                _seeFlower = false;
+                return;
+            }
             
+            seenFlowerCache.OnSeen.RemoveAllListeners();
             _target = _currentTargetFlower.transform.position;
             _seeFlower = true;
+        }
+
+        private void FindNextFlower()
+        {
+            seenFlowerCache.OnSeen.RemoveAllListeners();
+            seenFlowerCache.OnSeen.AddListener(ChangeCurrentTargetFlower);
+            ChangeCurrentTargetFlower();
         }
     }
 }
