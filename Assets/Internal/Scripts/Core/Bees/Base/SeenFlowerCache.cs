@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
@@ -8,9 +9,14 @@ namespace BeeColony.Core.Bees.Base
     public class SeenFlowerCache : MonoBehaviourBase
     {
         public UnityEvent OnSeen;
-        private Flower _flower;
+        public Flower _flower;
 
-        public void AddFlower(Flower flower)
+        private void Update()
+        {
+            //Debug.Log($"_flower not Cached: {_flower == null}");
+        }
+
+        public void Add(Flower flower)
         {
             if(_flower != null) return;
             _flower = flower;
@@ -18,7 +24,7 @@ namespace BeeColony.Core.Bees.Base
             OnSeen?.Invoke();
         }
         
-        public Flower ExtractFlower()
+        public Flower Extract()
         {
             var flower = _flower;
             _flower = null;

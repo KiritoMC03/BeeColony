@@ -38,7 +38,6 @@ namespace BeeColony.Core.Bees.Base
 
         private void InvertDirection()
         {
-            Debug.Log("x: " + beeMotor.LastDirection.x);
             if ((beeMotor.LastDirection.x < 0f && IsSeeRight) || (beeMotor.LastDirection.x > 0f && !IsSeeRight))
             {
                 _direction = new Vector3(-_direction.x, _direction.y, _direction.z);

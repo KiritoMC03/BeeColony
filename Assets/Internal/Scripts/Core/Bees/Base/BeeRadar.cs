@@ -25,14 +25,14 @@ namespace BeeColony.Core.Bees.Base
             _collider.isTrigger = true;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
             var flower = other.GetComponent<Flower>();
             if (flower != null)
             {
                 Debug.Log("flower!!!");
-                Debug.Log("flower: " + flower == null + " or not");
-                seenFlowerCache.AddFlower(flower);
+                Debug.Log($"flower is null: {flower == null}");
+                seenFlowerCache.Add(flower);
             }
         }
     }

@@ -4848,9 +4848,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbf801bef9941dbbd99686bdafe5c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnResourceNoticed:
+  OnCollected:
     m_PersistentCalls:
       m_Calls: []
+  seenFlowerCache: {fileID: 5224178591140640441}
+  resourceStorage: {fileID: 7570999747439429208}
 --- !u!58 &1872164653
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4866,7 +4868,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.48
+  m_Radius: 0.11
 --- !u!1 &190245324062310692
 GameObject:
   m_ObjectHideFlags: 0
@@ -4879,6 +4881,7 @@ GameObject:
   - component: {fileID: 1113987546}
   - component: {fileID: 190245324062310696}
   - component: {fileID: 190245324062310699}
+  - component: {fileID: 7570999747439429208}
   - component: {fileID: 190245324062310694}
   - component: {fileID: 190245324062310695}
   - component: {fileID: 8936231595249854028}
@@ -4905,6 +4908,7 @@ Transform:
   - {fileID: 6348284723617455838}
   - {fileID: 6346407625427460783}
   - {fileID: 1872164651}
+  - {fileID: 951642305567055798}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4920,10 +4924,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245cc4982936416d9f655c13a0de3e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seenFlowersCache: {fileID: 5224178591140640441}
+  seenFlowerCache: {fileID: 5224178591140640441}
   motor: {fileID: 190245324062310696}
-  resourceCollector: {fileID: 0}
+  resourceCollector: {fileID: 1872164652}
+  resourceExtractor: {fileID: 6148438473769373347}
   pollen: {fileID: 1548814058}
+  _currentTargetFlower: {fileID: 0}
 --- !u!114 &190245324062310696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4936,7 +4942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee568998d2fa3ca4c8587f9e3b972b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDirectionChange:
+  OnDirectionChange:
     m_PersistentCalls:
       m_Calls: []
   moveSpeed: 30
@@ -4954,6 +4960,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingAnimation: {fileID: 7400000, guid: 44c1ce84f4994d245b0facb80d7fb70e, type: 2}
   beeMotor: {fileID: 190245324062310696}
+  IsSeeRight: 1
+--- !u!114 &7570999747439429208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190245324062310692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aefb66e8c56643efac80e8ffe8b2ca03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _resource: {fileID: 0}
 --- !u!95 &190245324062310694
 Animator:
   serializedVersion: 3
@@ -5055,12 +5075,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.17
+  m_Radius: 0.1
 --- !u!1 &1633701257088891174
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,7 +5125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0acdc4de396f40d9a413f32783620617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SeenFlowersCache: {fileID: 5224178591140640441}
+  seenFlowerCache: {fileID: 5224178591140640441}
 --- !u!58 &3385213008400134419
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5168,3 +5188,70 @@ MonoBehaviour:
   OnSeen:
     m_PersistentCalls:
       m_Calls: []
+  _flower: {fileID: 0}
+--- !u!1 &4963298990693261324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 951642305567055798}
+  - component: {fileID: 6148438473769373347}
+  - component: {fileID: 4718328361236200395}
+  m_Layer: 12
+  m_Name: ResourceExtractor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &951642305567055798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963298990693261324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 190245324062310697}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6148438473769373347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963298990693261324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d7c24e9a66493e8186395f91e3293c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnExtracted:
+    m_PersistentCalls:
+      m_Calls: []
+  seenFlowerCache: {fileID: 5224178591140640441}
+  resourceStorage: {fileID: 7570999747439429208}
+  _bee: {fileID: 1113987546}
+--- !u!58 &4718328361236200395
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963298990693261324}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.11

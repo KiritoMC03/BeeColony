@@ -1,27 +1,36 @@
 ﻿using System;
 using System.Collections;
+using ObjectPool;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Utils;
 
 namespace BeeColony.Core.Bees.Base
 {
-    public class BeeBase : MonoBehaviourBase
+    public class BeeBase : MonoBehaviourBase, IPooledObject
     {
+        public ObjectPooler.ObjectInfo.ObjectType Type { get; }
+        public Hive ParentHive { get; private set; } 
+        
         [SerializeField] private SeenFlowerCache seenFlowerCache;
         [SerializeField] private BeeMotor motor;
         [SerializeField] private BeeResourceCollector resourceCollector;
+        [SerializeField] private BeeResourceExtractor resourceExtractor;
         [SerializeField] private ParticleSystem pollen;
 
-        private Flower _currentTargetFlower = null;
+        public Flower _currentTargetFlower = null;
         private Vector3 _target;
         private bool _seeFlower = false;
         private float _waitTime = 2f;
 
-        private void Awake()
+        private void OnEnable()
         {
-            seenFlowerCache.OnSeen.AddListener(ChangeCurrentTargetFlower);
-            resourceCollector.OnResourceCollected.AddListener(GoToHive);
+            StartListen();
+        }
+        
+        private void OnDisable()
+        {
+            RemoveListeners();
         }
 
         private void FixedUpdate()
@@ -52,14 +61,35 @@ namespace BeeColony.Core.Bees.Base
 
         private void GoToHive()
         {
-            _target = Vector3.zero;
+            try
+            {
+                _target = Hive.Instance.Position;
+            }
+            catch
+            {
+                throw new NullReferenceException("Hive not found or Hive.Instance is null.");
+            }
         }
 
         private void FindNextFlower()
         {
             seenFlowerCache.OnSeen.RemoveAllListeners();
-            seenFlowerCache.OnSeen.AddListener(ChangeCurrentTargetFlower);
+            StartListen();
             ChangeCurrentTargetFlower();
+        }
+
+        private void StartListen()
+        {
+            seenFlowerCache.OnSeen?.AddListener(ChangeCurrentTargetFlower);
+            resourceCollector.OnCollected?.AddListener(GoToHive);
+            resourceExtractor.OnExtracted?.AddListener(FindNextFlower);
+        }
+
+        private void RemoveListeners()
+        {
+            seenFlowerCache.OnSeen?.RemoveAllListeners();
+            resourceCollector.OnCollected?.RemoveAllListeners();
+            resourceExtractor.OnExtracted?.RemoveAllListeners();
         }
     }
 }
