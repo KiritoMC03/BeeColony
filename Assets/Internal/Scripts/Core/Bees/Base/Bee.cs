@@ -16,13 +16,17 @@ namespace BeeColony.Core.Bees.Base
 
         private void FixedUpdate()
         {
-            if (radar.IsResourceSourceCached && resourceHandler.IsStorageEmpty)
+            if (!resourceHandler.InProcessOfCollecting && radar.IsResourceSourceCached && resourceHandler.IsStorageEmpty)
             {
                 GoToResourceSource(radar.ResourceSource);
             }
             else if (!resourceHandler.IsStorageEmpty)
             {
                 GoToParentHive(parentHive);
+            }
+            else
+            {
+                motor.Stop();
             }
         }
 

@@ -5153,6 +5153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7aea40b7b8d466e817d434535d95a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InProcessOfCollecting: 0
   storage: {fileID: 5058351343256000596}
   collectSpeed: 1
   isTrigger: 0
@@ -5171,7 +5172,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.06
 --- !u!1 &3981461080776318582
 GameObject:
   m_ObjectHideFlags: 0
@@ -5277,4 +5278,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.06

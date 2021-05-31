@@ -7,6 +7,8 @@ namespace BeeColony.Core.Bees.Base
 {
     public class ResourceCollector : MonoBehaviourBase
     {
+        public bool InProcessOfCollecting = false;
+        
         [SerializeField] private BeeStorage storage;
         [SerializeField] private float collectSpeed = 1f;
         [Header("Recommend False")]
@@ -35,6 +37,7 @@ namespace BeeColony.Core.Bees.Base
 
         private IEnumerator CollectRoutine(ResourceSource resourceSource, float speed)
         {
+            InProcessOfCollecting = true;
             yield return new WaitForSeconds(5f / speed);
                 
             var resource = resourceSource.GetResource();
@@ -42,6 +45,7 @@ namespace BeeColony.Core.Bees.Base
             {
                 storage.Add(resource);
             }
+            InProcessOfCollecting = false;
         }
     }
 }
