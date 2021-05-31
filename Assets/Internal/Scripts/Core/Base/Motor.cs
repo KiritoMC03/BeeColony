@@ -14,6 +14,8 @@ namespace BeeColony.Core
         [SerializeField] protected float moveSpeed = 5f;
         protected Transform MyTransform;
         protected Rigidbody2D MyRigidbody;  
+        
+        private Vector2 _input;
 
         private void Awake()
         {
@@ -28,11 +30,18 @@ namespace BeeColony.Core
         }
         
         protected virtual void AwakeWork() {}
-
-        public abstract Vector2 Move();
+        
+        
+        /// <summary> Using in FixedUpdate. </summary>
+        public virtual Vector2 PhysicalMove()
+        {
+            var movement = GetInput() * (Time.deltaTime * moveSpeed);
+            MyRigidbody.velocity = movement;
+            return movement;
+        }
 
         /// <summary> Using in FixedUpdate. </summary>
-        public virtual void MoveTo(Vector3 position)
+        public virtual void PhysicalMoveTo(Vector3 position)
         {
             var direction = (Vector2)(position - MyTransform.position);
             if (direction.magnitude < 0.05f)
@@ -48,6 +57,10 @@ namespace BeeColony.Core
             MyRigidbody.velocity = Vector3.zero;
         }
         
+        
+        
+        
+        
         protected virtual Vector2 ChangeMoveDirection(Vector2 currentDirection)
         {
             var different = currentDirection.normalized.x - LastDirection.x;
@@ -58,6 +71,18 @@ namespace BeeColony.Core
             }
 
             return LastDirection;
+        }
+        
+        
+        
+
+        
+        
+        private static Vector2 GetInput()
+        {
+            var x = Input.GetAxis("Horizontal");
+            var y = Input.GetAxis("Vertical");
+            return new Vector2(x, y);
         }
     }
 }

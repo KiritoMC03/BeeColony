@@ -1,39 +1,46 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 using Utils;
 
 namespace BeeColony.Core.Bees.Base
 {
     public class BeeRadar : MonoBehaviourBase
     {
-        [SerializeField] private SeenFlowerCache seenFlowerCache;
+        public UnityEvent OnResourceSourceCached;
+        public bool IsResourceSourceCached => seenResourcesSourcesCache.IsSeeing;
+        public ResourceSource ResourceSource => seenResourcesSourcesCache.GetLink();
+        
+        [SerializeField] private SeenResourcesSourcesCache seenResourcesSourcesCache;
+        
+        [Header("Recommend True")]
+        [SerializeField] private bool isTrigger = true;
         private Collider2D _collider;
 
         private void Awake()
         {
-            InitFields();
-            SetStartPreferences();
-        }
-
-        private void InitFields()
-        {
             _collider = GetSafeComponent<Collider2D>();
-        }
-
-        private void SetStartPreferences()
-        {
-            _collider.isTrigger = true;
+            _collider.isTrigger = isTrigger;
         }
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            var flower = other.GetComponent<Flower>();
-            if (flower != null)
+            var resourceSource = other.GetComponent<ResourceSource>();
+
+            if (resourceSource != null)
             {
-                Debug.Log("flower!!!");
-                Debug.Log($"flower is null: {flower == null}");
-                seenFlowerCache.Add(flower);
+                var sendResult = SendResourceSourceToCache(resourceSource);
+                if (sendResult)
+                {
+                    OnResourceSourceCached?.Invoke();
+                }
             }
+        }
+
+        /// <returns>Was it possible to add.</returns>
+        private bool SendResourceSourceToCache(ResourceSource source)
+        {
+            return seenResourcesSourcesCache.Add(source);
         }
     }
 }

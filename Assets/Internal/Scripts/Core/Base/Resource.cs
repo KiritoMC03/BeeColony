@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using Utils;
 
 namespace BeeColony.Core
 {
-    public abstract class Resource : MonoBehaviour
+    public abstract class Resource : MonoBehaviourBase
     {
         
     }
