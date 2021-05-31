@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Utils;
 using BeeColony.Core.Resources;
 
@@ -7,9 +8,11 @@ namespace BeeColony.Core.Bees.Base
     public class ResourceCollector : MonoBehaviourBase
     {
         [SerializeField] private BeeStorage storage;
+        [SerializeField] private float collectSpeed = 1f;
         [Header("Recommend False")]
         [SerializeField] private bool isTrigger = false;
         private Collider2D _collider;
+        
 
         private void Awake()
         {
@@ -25,12 +28,19 @@ namespace BeeColony.Core.Bees.Base
             {
                 if (storage.IsEmpty)
                 {
-                    var resource = resourceSource.GetResource();
-                    if (resource != null)
-                    {
-                        storage.Add(resource);
-                    }
+                    StartCoroutine(CollectRoutine(resourceSource, collectSpeed));
                 }
+            }
+        }
+
+        private IEnumerator CollectRoutine(ResourceSource resourceSource, float speed)
+        {
+            yield return new WaitForSeconds(5f / speed);
+                
+            var resource = resourceSource.GetResource();
+            if (resource != null)
+            {
+                storage.Add(resource);
             }
         }
     }

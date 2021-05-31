@@ -4921,6 +4921,7 @@ MonoBehaviour:
   motor: {fileID: 3057964728617686090}
   radar: {fileID: 6791451347955172297}
   resourceHandler: {fileID: 1872164652}
+  parentHive: {fileID: 0}
 --- !u!114 &3057964728617686090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5153,6 +5154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storage: {fileID: 5058351343256000596}
+  collectSpeed: 1
   isTrigger: 0
 --- !u!58 &4685041292151265091
 CircleCollider2D:
@@ -5169,7 +5171,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.2
 --- !u!1 &3981461080776318582
 GameObject:
   m_ObjectHideFlags: 0
@@ -5275,4 +5277,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.2
