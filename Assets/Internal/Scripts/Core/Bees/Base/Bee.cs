@@ -13,6 +13,18 @@ namespace BeeColony.Core.Bees.Base
         [SerializeField] private BeeRadar radar;
         [SerializeField] private BeeResourceHandler resourceHandler;
         [SerializeField] private Hive parentHive;
+        [SerializeField] private GameObject pollenEffect;
+
+        private void Start()
+        {
+            resourceHandler.StartListenStorageChange(ChangePoolerEffect);
+        }
+
+        private void ChangePoolerEffect()
+        {
+            Debug.Log("Change!");
+            pollenEffect.SetActive(!resourceHandler.IsStorageEmpty);
+        }
 
         private void FixedUpdate()
         {
