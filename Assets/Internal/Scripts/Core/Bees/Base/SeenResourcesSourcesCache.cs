@@ -8,7 +8,7 @@ namespace BeeColony.Core.Bees.Base
     {
         public bool IsSeeing => _resourceSource != null;
         public ResourceSource _resourceSource;
-
+        
         /// <returns>Was it possible to add.</returns>
         public bool Add(ResourceSource source)
         {

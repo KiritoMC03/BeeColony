@@ -15,14 +15,15 @@ namespace BeeColony.Core.Bees.Base
         [SerializeField] private Hive parentHive;
         [SerializeField] private GameObject pollenEffect;
 
-        private void Start()
+        private void OnEnable()
         {
-            resourceHandler.StartListenStorageChange(ChangePoolerEffect);
+            resourceHandler.OnStorageChange.AddListener(ChangePoolerEffect);
+            resourceHandler.OnDevastated.AddListener(radar.EnableRadar);
+            resourceHandler.OnReplenished.AddListener(radar.DisableRadar);
         }
 
         private void ChangePoolerEffect()
         {
-            Debug.Log("Change!");
             pollenEffect.SetActive(!resourceHandler.IsStorageEmpty);
         }
 
@@ -55,6 +56,13 @@ namespace BeeColony.Core.Bees.Base
         internal void SetParentHive(Hive hive)
         {
             parentHive = hive;
+        }
+
+        private void OnDisable()
+        {
+            resourceHandler.OnStorageChange.RemoveAllListeners();
+            resourceHandler.OnDevastated.RemoveAllListeners();
+            resourceHandler.OnReplenished.RemoveAllListeners();
         }
     }
 }

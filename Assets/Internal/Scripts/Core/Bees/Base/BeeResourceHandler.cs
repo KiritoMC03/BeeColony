@@ -7,7 +7,9 @@ namespace BeeColony.Core.Bees.Base
 {
     public class BeeResourceHandler : MonoBehaviourBase
     {
-        private UnityEvent OnStorageChange;
+        public UnityEvent OnReplenished;
+        public UnityEvent OnDevastated;
+        public UnityEvent OnStorageChange;
         
         public bool IsStorageEmpty => storage.IsEmpty;
         public bool InProcessOfCollecting => collector.InProcessOfCollecting;
@@ -22,15 +24,16 @@ namespace BeeColony.Core.Bees.Base
             storage.OnStorageChange += () => OnStorageChange?.Invoke();
         }
 
-        public void StartListenStorageChange(UnityAction call)
+        private void OnEnable()
         {
-            Debug.Log($"B. IsNull: {OnStorageChange == null} ");
-            OnStorageChange.AddListener(call);
+            collector.OnCollected.AddListener(() => OnReplenished?.Invoke());
+            extractor.OnExtracted.AddListener(() => OnDevastated?.Invoke());
         }
-        
-        public void EndListenStorageChange(UnityAction call)
+
+        private void OnDisable()
         {
-            OnStorageChange.RemoveListener(call);
+            collector.OnCollected.RemoveAllListeners();
+            extractor.OnExtracted.RemoveAllListeners();
         }
     }
 }

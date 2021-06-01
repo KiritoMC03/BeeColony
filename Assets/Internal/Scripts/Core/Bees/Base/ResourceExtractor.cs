@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using Utils;
 
 namespace BeeColony.Core.Bees.Base
 {
     public class ResourceExtractor : MonoBehaviourBase
     {
+        public UnityEvent OnExtracted;
+        
         [SerializeField] private BeeStorage storage;
         [Header("Recommend False")]
         [SerializeField] private bool isTrigger = false;
@@ -25,6 +28,7 @@ namespace BeeColony.Core.Bees.Base
                 if (!storage.IsEmpty)
                 {
                     storage.Extract();
+                    OnExtracted?.Invoke();
                 }
             }
         }

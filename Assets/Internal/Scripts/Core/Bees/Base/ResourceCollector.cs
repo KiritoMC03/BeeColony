@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using Utils;
 using BeeColony.Core.Resources;
+using UnityEngine.Events;
 
 namespace BeeColony.Core.Bees.Base
 {
     public class ResourceCollector : MonoBehaviourBase
     {
+        public UnityEvent OnCollected;
+        
         public bool InProcessOfCollecting = false;
         
         [SerializeField] private BeeStorage storage;
@@ -14,6 +18,7 @@ namespace BeeColony.Core.Bees.Base
         [Header("Recommend False")]
         [SerializeField] private bool isTrigger = false;
         private Collider2D _collider;
+        private Coroutine _collectingRoutine;
         
 
         private void Awake()
@@ -30,12 +35,13 @@ namespace BeeColony.Core.Bees.Base
             {
                 if (storage.IsEmpty)
                 {
-                    StartCoroutine(CollectRoutine(resourceSource, collectSpeed));
+                    resourceSource.StartListenForEmaciated(StopCollecting);
+                    _collectingRoutine = StartCoroutine(CollectingRoutine(resourceSource, collectSpeed));
                 }
             }
         }
-
-        private IEnumerator CollectRoutine(ResourceSource resourceSource, float speed)
+        
+        private IEnumerator CollectingRoutine(ResourceSource resourceSource, float speed)
         {
             InProcessOfCollecting = true;
             yield return new WaitForSeconds(5f / speed);
@@ -44,8 +50,18 @@ namespace BeeColony.Core.Bees.Base
             if (resource != null)
             {
                 storage.Add(resource);
+                OnCollected?.Invoke();
             }
             InProcessOfCollecting = false;
+        }
+
+        private void StopCollecting()
+        {
+            if (_collectingRoutine != null)
+            {
+                StopCoroutine(_collectingRoutine);
+                InProcessOfCollecting = false;
+            }
         }
     }
 }
