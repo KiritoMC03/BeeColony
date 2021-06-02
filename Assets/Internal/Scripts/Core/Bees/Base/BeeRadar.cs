@@ -17,6 +17,7 @@ namespace BeeColony.Core.Bees.Base
         [Header("Recommend True")]
         [SerializeField] private bool isTrigger = true;
         private Collider2D _collider;
+        private Coroutine _periodicInspectionRoutine;
 
         private void Awake()
         {
@@ -27,17 +28,25 @@ namespace BeeColony.Core.Bees.Base
         private void OnEnable()
         {
             StartCoroutine(PeriodicInspection());
+            seenResourcesSourcesCache.OnClear.AddListener(ReloadRadar);
+        }
+
+        private void OnDisable()
+        {
+            if (_periodicInspectionRoutine != null)
+            {
+                StopCoroutine(_periodicInspectionRoutine);
+            }
+            seenResourcesSourcesCache.OnClear.RemoveAllListeners();
         }
 
         public void EnableRadar()
         {
-            Debug.Log("Enable");
             _collider.enabled = true;
         }
         
         public void DisableRadar()
         {
-            Debug.Log("Disable");
             _collider.enabled = false;
         }
 
@@ -49,7 +58,6 @@ namespace BeeColony.Core.Bees.Base
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log($"A");
             var resourceSource = other.GetComponent<ResourceSource>();
             if (resourceSource != null && !resourceSource.IsEmaciated)
             {

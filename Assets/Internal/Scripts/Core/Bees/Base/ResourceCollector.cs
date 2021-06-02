@@ -35,7 +35,7 @@ namespace BeeColony.Core.Bees.Base
             {
                 if (storage.IsEmpty)
                 {
-                    resourceSource.StartListenForEmaciated(StopCollecting);
+                    resourceSource.OnEmaciated.AddListener(StopCollecting);
                     _collectingRoutine = StartCoroutine(CollectingRoutine(resourceSource, collectSpeed));
                 }
             }

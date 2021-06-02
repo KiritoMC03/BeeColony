@@ -1,11 +1,14 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 using Utils;
 
 namespace BeeColony.Core.Bees.Base
 {
     public class SeenResourcesSourcesCache : MonoBehaviourBase
     {
+        public UnityEvent OnClear;
+        
         public bool IsSeeing => _resourceSource != null;
         public ResourceSource _resourceSource;
         
@@ -14,7 +17,13 @@ namespace BeeColony.Core.Bees.Base
         {
             if (!IsSeeing)
             {
+                if (_resourceSource != null)
+                {
+                    _resourceSource.OnEmaciated.RemoveAllListeners();
+                }
+
                 _resourceSource = source;
+                source.OnEmaciated.AddListener(Clear);
                 return true;
             }
 
@@ -29,6 +38,7 @@ namespace BeeColony.Core.Bees.Base
         public void Clear()
         {
             _resourceSource = null;
+            OnClear?.Invoke();
         }
 
         public ResourceSource GetLink()

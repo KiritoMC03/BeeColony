@@ -57,10 +57,6 @@ namespace BeeColony.Core
             MyRigidbody.velocity = Vector3.zero;
         }
         
-        
-        
-        
-        
         protected virtual Vector2 ChangeMoveDirection(Vector2 currentDirection)
         {
             var different = currentDirection.normalized.x - LastDirection.x;

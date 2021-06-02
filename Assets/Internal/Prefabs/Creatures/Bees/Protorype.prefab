@@ -4815,7 +4815,7 @@ GameObject:
   - component: {fileID: 1872164651}
   - component: {fileID: 1872164652}
   - component: {fileID: 5058351343256000596}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: ResourceHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4848,6 +4848,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b56ca9741a4063b80992d5667ed3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnReplenished:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDevastated:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStorageChange:
+    m_PersistentCalls:
+      m_Calls: []
   collector: {fileID: 8025943777680613415}
   extractor: {fileID: 4626928425416022182}
   storage: {fileID: 5058351343256000596}
@@ -4876,6 +4885,7 @@ GameObject:
   - component: {fileID: 1113987546}
   - component: {fileID: 3057964728617686090}
   - component: {fileID: 4590056741012484184}
+  - component: {fileID: 2582730330242499899}
   m_Layer: 12
   m_Name: Protorype
   m_TagString: Untagged
@@ -4921,6 +4931,7 @@ MonoBehaviour:
   resourceHandler: {fileID: 1872164652}
   parentHive: {fileID: 0}
   pollenEffect: {fileID: 1548814055}
+  avoidForce: 10
 --- !u!114 &3057964728617686090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4957,7 +4968,23 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!58 &2582730330242499899
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190245324062310692}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01, y: 0.03}
+  serializedVersion: 2
+  m_Radius: 0.06
 --- !u!1 &1633701257088891174
 GameObject:
   m_ObjectHideFlags: 0
@@ -5034,7 +5061,7 @@ GameObject:
   - component: {fileID: 2296338326282233904}
   - component: {fileID: 8025943777680613415}
   - component: {fileID: 4685041292151265091}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Collector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5067,9 +5094,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7aea40b7b8d466e817d434535d95a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCollected:
+    m_PersistentCalls:
+      m_Calls: []
   InProcessOfCollecting: 0
   storage: {fileID: 5058351343256000596}
-  collectSpeed: 1
+  collectSpeed: 5
   isTrigger: 0
 --- !u!58 &4685041292151265091
 CircleCollider2D:
@@ -5130,6 +5160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28ffccc23ca4f4e9487cb40928046e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnClear:
+    m_PersistentCalls:
+      m_Calls: []
   _resourceSource: {fileID: 0}
 --- !u!1 &4155675952184930873
 GameObject:
@@ -5142,7 +5175,7 @@ GameObject:
   - component: {fileID: 1369730709170753182}
   - component: {fileID: 4626928425416022182}
   - component: {fileID: 8034865271162934772}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Extractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5175,6 +5208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbe939788db45a6909d674503255df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnExtracted:
+    m_PersistentCalls:
+      m_Calls: []
   storage: {fileID: 5058351343256000596}
   isTrigger: 0
 --- !u!58 &8034865271162934772

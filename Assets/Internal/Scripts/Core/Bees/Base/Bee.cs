@@ -15,6 +15,17 @@ namespace BeeColony.Core.Bees.Base
         [SerializeField] private Hive parentHive;
         [SerializeField] private GameObject pollenEffect;
 
+        [SerializeField] private float avoidForce = 10f;
+
+        private Rigidbody2D _rigidbody;
+        private Collider2D _collider;
+
+        private void Awake()
+        {
+            _rigidbody = GetSafeComponent<Rigidbody2D>();
+            _collider = GetSafeComponent<Collider2D>();
+        }
+
         private void OnEnable()
         {
             resourceHandler.OnStorageChange.AddListener(ChangePoolerEffect);
@@ -32,10 +43,12 @@ namespace BeeColony.Core.Bees.Base
             if (!resourceHandler.InProcessOfCollecting && radar.IsResourceSourceCached && resourceHandler.IsStorageEmpty)
             {
                 GoToResourceSource(radar.ResourceSource);
+                _collider.enabled = true;
             }
             else if (!resourceHandler.IsStorageEmpty)
             {
                 GoToParentHive(parentHive);
+                _collider.enabled = false;
             }
             else
             {
@@ -47,15 +60,19 @@ namespace BeeColony.Core.Bees.Base
         {
             motor.PhysicalMoveTo(source.transform.position);
         }
-
         private void GoToParentHive(Hive hive)
         {
-            motor.PhysicalMoveTo(hive.transform.position);
+            motor.PhysicalMoveTo(hive.Position);
         }
 
         internal void SetParentHive(Hive hive)
         {
             parentHive = hive;
+        }
+        
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            ObstacleAvoidant.Avoid(_rigidbody, other.transform, avoidForce);
         }
 
         private void OnDisable()
