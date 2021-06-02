@@ -4882,12 +4882,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 190245324062310697}
-  - component: {fileID: 1113987546}
+  - component: {fileID: -2190471153199929571}
   - component: {fileID: 3057964728617686090}
   - component: {fileID: 4590056741012484184}
   - component: {fileID: 2582730330242499899}
   m_Layer: 12
-  m_Name: Protorype
+  m_Name: Worker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4914,7 +4914,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1113987546
+--- !u!114 &-2190471153199929571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4923,15 +4923,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 190245324062310692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be7fc49e68914b91baa4626b8ceec683, type: 3}
+  m_Script: {fileID: 11500000, guid: bf5a0e841b584484933af88ce22b4bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   motor: {fileID: 3057964728617686090}
   radar: {fileID: 6791451347955172297}
-  resourceHandler: {fileID: 1872164652}
   parentHive: {fileID: 0}
-  pollenEffect: {fileID: 1548814055}
   avoidForce: 10
+  resourceHandler: {fileID: 1872164652}
+  pollenEffect: {fileID: 1548814055}
 --- !u!114 &3057964728617686090
 MonoBehaviour:
   m_ObjectHideFlags: 0

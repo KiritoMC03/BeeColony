@@ -8,8 +8,8 @@ namespace BeeColony.Core.Spawners
 {
     public class BeeSpawner : MonoBehaviourBase
     {
-        [SerializeField] private ObjectPooler.ObjectInfo.ObjectType beeType = 
-            ObjectPooler.ObjectInfo.ObjectType.BeeBase;
+        [SerializeField] private ObjectPooler.ObjectInfo.BeeType beeType = 
+            ObjectPooler.ObjectInfo.BeeType.Worker;
         [SerializeField] private Hive fromHive;
 
         private void Awake()

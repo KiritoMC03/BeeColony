@@ -7,79 +7,59 @@ namespace BeeColony.Core.Bees.Base
 {
     public class Bee : MonoBehaviourBase, IPooledObject
     {
-        public ObjectPooler.ObjectInfo.ObjectType Type { get; }
+        public ObjectPooler.ObjectInfo.BeeType Type { get; }
 
-        [SerializeField] private BeeMotor motor;
-        [SerializeField] private BeeRadar radar;
-        [SerializeField] private BeeResourceHandler resourceHandler;
-        [SerializeField] private Hive parentHive;
-        [SerializeField] private GameObject pollenEffect;
+        [SerializeField] protected BeeMotor motor;
+        [SerializeField] protected BeeRadar radar;
+        [SerializeField] protected Hive parentHive;
 
-        [SerializeField] private float avoidForce = 10f;
+        [SerializeField] protected float avoidForce = 10f;
 
-        private Rigidbody2D _rigidbody;
-        private Collider2D _collider;
+        protected Rigidbody2D myRigidbody;
+        protected Collider2D myCollider;
 
         private void Awake()
         {
-            _rigidbody = GetSafeComponent<Rigidbody2D>();
-            _collider = GetSafeComponent<Collider2D>();
+            myRigidbody = GetSafeComponent<Rigidbody2D>();
+            myCollider = GetSafeComponent<Collider2D>();
+            Awake_Work();
         }
 
         private void OnEnable()
         {
-            resourceHandler.OnStorageChange.AddListener(ChangePoolerEffect);
-            resourceHandler.OnDevastated.AddListener(radar.EnableRadar);
-            resourceHandler.OnReplenished.AddListener(radar.DisableRadar);
-        }
-
-        private void ChangePoolerEffect()
-        {
-            pollenEffect.SetActive(!resourceHandler.IsStorageEmpty);
-        }
-
-        private void FixedUpdate()
-        {
-            if (!resourceHandler.InProcessOfCollecting && radar.IsResourceSourceCached && resourceHandler.IsStorageEmpty)
-            {
-                GoToResourceSource(radar.ResourceSource);
-                _collider.enabled = true;
-            }
-            else if (!resourceHandler.IsStorageEmpty)
-            {
-                GoToParentHive(parentHive);
-                _collider.enabled = false;
-            }
-            else
-            {
-                motor.Stop();
-            }
-        }
-
-        private void GoToResourceSource(ResourceSource source)
-        {
-            motor.PhysicalMoveTo(source.transform.position);
-        }
-        private void GoToParentHive(Hive hive)
-        {
-            motor.PhysicalMoveTo(hive.Position);
-        }
-
-        internal void SetParentHive(Hive hive)
-        {
-            parentHive = hive;
-        }
-        
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            ObstacleAvoidant.Avoid(_rigidbody, other.transform, avoidForce);
+            OnEnable_Work();
         }
 
         private void OnDisable()
         {
-            resourceHandler.OnStorageChange.RemoveAllListeners();
-            resourceHandler.OnDevastated.RemoveAllListeners();
-            resourceHandler.OnReplenished.RemoveAllListeners();
+            OnDisable_Work();
+        }
+
+        private void FixedUpdate()
+        {
+            FixedUpdate_Work();
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            ObstacleAvoidant.Avoid(myRigidbody, other.transform, avoidForce);
+            OnCollisionEnter2D_Work(other);
+        }
+
+        protected virtual void Awake_Work() {}
+        protected virtual void OnEnable_Work() {}
+        protected virtual void OnDisable_Work() {}
+        protected virtual void FixedUpdate_Work() {}
+        protected virtual void OnCollisionEnter2D_Work(Collision2D other) {}
+
+        internal virtual void SetParentHive(Hive hive)
+        {
+            parentHive = hive;
+        }
+
+        internal virtual void GoToParentHive(Hive hive)
+        {
+            motor.PhysicalMoveTo(hive.Position);
         }
     }
 }
