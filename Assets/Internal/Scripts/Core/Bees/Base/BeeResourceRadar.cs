@@ -6,7 +6,7 @@ using Utils;
 
 namespace BeeColony.Core.Bees.Base
 {
-    public class BeeRadar : MonoBehaviourBase
+    public class BeeResourceRadar : MonoBehaviourBase
     {
         public UnityEvent OnResourceSourceCached;
         public bool IsResourceSourceCached => seenResourcesSourcesCache.IsSeeing;

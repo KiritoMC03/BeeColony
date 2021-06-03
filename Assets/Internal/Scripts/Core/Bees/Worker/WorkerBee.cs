@@ -3,7 +3,7 @@ using BeeColony.Core.Bees.Base;
 using ObjectPool;
 using UnityEngine;
 
-namespace Internal.Scripts.Core.Bees.Worker
+namespace BeeColony.Core.Bees.Worker
 {
     public class WorkerBee : Bee
     {
@@ -15,8 +15,8 @@ namespace Internal.Scripts.Core.Bees.Worker
         protected override void OnEnable_Work()
         {
             resourceHandler.OnStorageChange.AddListener(ChangePoolerEffect);
-            resourceHandler.OnDevastated.AddListener(radar.EnableRadar);
-            resourceHandler.OnReplenished.AddListener(radar.DisableRadar);
+            resourceHandler.OnDevastated.AddListener(resourceRadar.EnableRadar);
+            resourceHandler.OnReplenished.AddListener(resourceRadar.DisableRadar);
         }
         
         protected override void OnDisable_Work()
@@ -33,9 +33,9 @@ namespace Internal.Scripts.Core.Bees.Worker
 
         protected override void FixedUpdate_Work()
         {
-            if (!resourceHandler.InProcessOfCollecting && radar.IsResourceSourceCached && resourceHandler.IsStorageEmpty)
+            if (!resourceHandler.InProcessOfCollecting && resourceRadar.IsResourceSourceCached && resourceHandler.IsStorageEmpty)
             {
-                GoToResourceSource(radar.ResourceSource);
+                GoToResourceSource(resourceRadar.ResourceSource);
                 myCollider.enabled = true;
             }
             else if (!resourceHandler.IsStorageEmpty)

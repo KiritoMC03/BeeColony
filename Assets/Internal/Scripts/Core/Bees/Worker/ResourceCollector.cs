@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using Utils;
-using BeeColony.Core.Resources;
 using UnityEngine.Events;
 
-namespace BeeColony.Core.Bees.Base
+namespace BeeColony.Core.Bees.Worker
 {
     public class ResourceCollector : MonoBehaviourBase
     {

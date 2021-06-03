@@ -21,7 +21,8 @@ namespace ObjectPool
         {
             public enum BeeType
             {
-                Worker
+                Worker,
+                Guardian
             }
             public BeeType Type;
             [Header("Require IPooledObject component.")]

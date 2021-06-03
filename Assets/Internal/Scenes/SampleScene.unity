@@ -886,10 +886,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectsInfo:
   - Type: 0
-    Prefab: {fileID: 190245324062310692, guid: 804ca8726abaf664e959c6b05bf3a952, type: 3}
+    Prefab: {fileID: 190245324062310692, guid: 02acff191d4b1a74397ca96a48ed607d, type: 3}
     StartCount: 0
   - Type: 1
-    Prefab: {fileID: 190245324062310692, guid: 02acff191d4b1a74397ca96a48ed607d, type: 3}
+    Prefab: {fileID: 190245324062310692, guid: 0b87a9a307a9dc8448dd5245e96236d7, type: 3}
     StartCount: 10
 --- !u!4 &1368168485
 Transform:

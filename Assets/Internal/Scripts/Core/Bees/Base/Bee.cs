@@ -1,16 +1,19 @@
 ﻿using System;
 using ObjectPool;
 using UnityEngine;
+using UnityEngine.Events;
 using Utils;
 
 namespace BeeColony.Core.Bees.Base
 {
     public class Bee : MonoBehaviourBase, IPooledObject
     {
+        public UnityEvent OnHiveSet;
+        
         public ObjectPooler.ObjectInfo.BeeType Type { get; }
 
         [SerializeField] protected BeeMotor motor;
-        [SerializeField] protected BeeRadar radar;
+        [SerializeField] protected BeeResourceRadar resourceRadar;
         [SerializeField] protected Hive parentHive;
 
         [SerializeField] protected float avoidForce = 10f;
@@ -55,6 +58,7 @@ namespace BeeColony.Core.Bees.Base
         internal virtual void SetParentHive(Hive hive)
         {
             parentHive = hive;
+            OnHiveSet?.Invoke();
         }
 
         internal virtual void GoToParentHive(Hive hive)

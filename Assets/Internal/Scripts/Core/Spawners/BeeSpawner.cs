@@ -25,5 +25,11 @@ namespace BeeColony.Core.Spawners
             var bee = ObjectPooler.Instance.GetObject(beeType).GetComponent<Bee>();
             bee.SetParentHive(fromHive);
         }
+        
+        public void Spawn(ObjectPooler.ObjectInfo.BeeType beeType)
+        {
+            var bee = ObjectPooler.Instance.GetObject(beeType).GetComponent<Bee>();
+            bee.SetParentHive(fromHive);
+        }
     }
 }

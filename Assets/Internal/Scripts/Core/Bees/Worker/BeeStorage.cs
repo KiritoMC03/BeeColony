@@ -1,8 +1,7 @@
 ﻿using System;
-using UnityEngine;
 using Utils;
 
-namespace BeeColony.Core.Bees.Base
+namespace BeeColony.Core.Bees.Worker
 {
     public class BeeStorage : MonoBehaviourBase
     {

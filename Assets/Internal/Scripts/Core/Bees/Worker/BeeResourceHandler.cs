@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using Utils;
 
-namespace BeeColony.Core.Bees.Base
+namespace BeeColony.Core.Bees.Worker
 {
     public class BeeResourceHandler : MonoBehaviourBase
     {
