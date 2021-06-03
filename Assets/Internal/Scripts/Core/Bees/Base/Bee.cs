@@ -1,4 +1,5 @@
 ﻿using System;
+using BeeColony.Core.Bees.Worker;
 using ObjectPool;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,7 +14,6 @@ namespace BeeColony.Core.Bees.Base
         public ObjectPooler.ObjectInfo.BeeType Type { get; }
 
         [SerializeField] protected BeeMotor motor;
-        [SerializeField] protected BeeResourceRadar resourceRadar;
         [SerializeField] protected Hive parentHive;
 
         [SerializeField] protected float avoidForce = 10f;

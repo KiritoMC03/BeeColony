@@ -1,5 +1,4 @@
-﻿using BeeColony.Core;
-using BeeColony.Core.Bees.Base;
+﻿using BeeColony.Core.Bees.Base;
 using ObjectPool;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ namespace BeeColony.Core.Bees.Worker
         public ObjectPooler.ObjectInfo.BeeType Type { get; }
 
         [SerializeField] protected BeeResourceHandler resourceHandler;
+        [SerializeField] protected BeeResourceRadar resourceRadar;
         [SerializeField] protected GameObject pollenEffect;
 
         protected override void OnEnable_Work()

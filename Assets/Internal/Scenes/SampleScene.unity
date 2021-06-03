@@ -26619,7 +26619,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1883822886, guid: 5a8243df57d7f884faf56fdb5bc66422, type: 3}
       propertyPath: beeType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1883822886, guid: 5a8243df57d7f884faf56fdb5bc66422, type: 3}
       propertyPath: fromHive

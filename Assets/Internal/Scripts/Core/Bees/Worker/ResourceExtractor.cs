@@ -1,25 +1,15 @@
-﻿using UnityEngine;
+﻿using BeeColony.Core.Bees.Base;
+using UnityEngine;
 using UnityEngine.Events;
 using Utils;
 
 namespace BeeColony.Core.Bees.Worker
 {
-    public class ResourceExtractor : MonoBehaviourBase
+    public class ResourceExtractor : ResourceTransfer
     {
         public UnityEvent OnExtracted;
         
-        [SerializeField] private BeeStorage storage;
-        [Header("Recommend False")]
-        [SerializeField] private bool isTrigger = false;
-        private Collider2D _collider;
-
-        private void Awake()
-        {
-            _collider = GetSafeComponent<Collider2D>();
-            _collider.isTrigger = isTrigger;
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
+        protected override void OnTriggerEnter2D_Work(Collider2D other)
         {
             var hive = other.GetComponent<Hive>();
 
@@ -28,6 +18,7 @@ namespace BeeColony.Core.Bees.Worker
                 if (!storage.IsEmpty)
                 {
                     storage.Extract();
+                    Debug.Log($"Extract");
                     OnExtracted?.Invoke();
                 }
             }

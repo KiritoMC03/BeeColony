@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
+using BeeColony.Core.Bees.Base;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
 
-namespace BeeColony.Core.Bees.Base
+namespace BeeColony.Core.Bees.Worker
 {
     public class BeeResourceRadar : MonoBehaviourBase
     {

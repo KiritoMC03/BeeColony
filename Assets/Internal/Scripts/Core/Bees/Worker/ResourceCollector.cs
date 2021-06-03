@@ -1,31 +1,21 @@
 ﻿using System.Collections;
+using BeeColony.Core.Bees.Base;
 using UnityEngine;
 using Utils;
 using UnityEngine.Events;
 
 namespace BeeColony.Core.Bees.Worker
 {
-    public class ResourceCollector : MonoBehaviourBase
+    public class ResourceCollector : ResourceTransfer
     {
         public UnityEvent OnCollected;
         
         public bool InProcessOfCollecting = false;
         
-        [SerializeField] private BeeStorage storage;
         [SerializeField] private float collectSpeed = 1f;
-        [Header("Recommend False")]
-        [SerializeField] private bool isTrigger = false;
-        private Collider2D _collider;
         private Coroutine _collectingRoutine;
         
-
-        private void Awake()
-        {
-            _collider = GetSafeComponent<Collider2D>();
-            _collider.isTrigger = isTrigger;
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
+        protected override void OnTriggerEnter2D_Work(Collider2D other)
         {
             var resourceSource = other.GetComponent<ResourceSource>();
 
@@ -48,6 +38,7 @@ namespace BeeColony.Core.Bees.Worker
             if (resource != null)
             {
                 storage.Add(resource);
+                Debug.Log($"Collect!");
                 OnCollected?.Invoke();
             }
             InProcessOfCollecting = false;
