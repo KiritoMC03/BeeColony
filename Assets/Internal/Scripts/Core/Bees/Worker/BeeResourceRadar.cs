@@ -11,19 +11,21 @@ namespace BeeColony.Core.Bees.Worker
     {
         public UnityEvent OnResourceSourceCached;
         public bool IsResourceSourceCached => seenResourcesSourcesCache.IsSeeing;
-        public ResourceSource ResourceSource => seenResourcesSourcesCache.GetLink();
+        public ResourceSource ResourceSource => seenResourcesSourcesCache.GetTargetResourceSource();
         
         [SerializeField] private SeenResourcesSourcesCache seenResourcesSourcesCache;
+        [SerializeField] private float radius = 10f;
         
         [Header("Recommend True")]
         [SerializeField] private bool isTrigger = true;
-        private Collider2D _collider;
+        private CircleCollider2D _collider;
         private Coroutine _periodicInspectionRoutine;
 
         private void Awake()
         {
-            _collider = GetSafeComponent<Collider2D>();
+            _collider = GetSafeComponent<CircleCollider2D>();
             _collider.isTrigger = isTrigger;
+            _collider.radius = radius;
         }
 
         private void OnEnable()
@@ -59,6 +61,7 @@ namespace BeeColony.Core.Bees.Worker
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            //Debug.Log($"Trigger: {other.gameObject}");
             var resourceSource = other.GetComponent<ResourceSource>();
             if (resourceSource != null && !resourceSource.IsEmaciated)
             {
@@ -68,9 +71,9 @@ namespace BeeColony.Core.Bees.Worker
                     OnResourceSourceCached?.Invoke();
                 }
             }
-            else
+            else if(resourceSource != null)
             {
-                seenResourcesSourcesCache.Clear();
+                seenResourcesSourcesCache.Clear(resourceSource);
             }
         }
 

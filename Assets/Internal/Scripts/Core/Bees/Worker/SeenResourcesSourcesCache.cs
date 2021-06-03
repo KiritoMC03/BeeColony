@@ -1,5 +1,8 @@
-﻿using UnityEngine.Events;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine.Events;
 using Utils;
+using Random = UnityEngine.Random;
 
 namespace BeeColony.Core.Bees.Worker
 {
@@ -7,41 +10,58 @@ namespace BeeColony.Core.Bees.Worker
     {
         public UnityEvent OnClear;
         
-        public bool IsSeeing => _resourceSource != null;
-        public ResourceSource _resourceSource;
-        
+        public bool IsSeeing => _resourceSources != null && _resourceSources.Count > 0;
+
+        private List<ResourceSource> _resourceSources;
+        private ResourceSource _targetResourceSource;
+
+        private void Awake()
+        {
+            _resourceSources = new List<ResourceSource>();
+        }
+
         /// <returns>Was it possible to add.</returns>
         public bool Add(ResourceSource source)
         {
+            _resourceSources.Add(source);
+            return true;
+            
+            /*
             if (!IsSeeing)
             {
-                if (_resourceSource != null)
+                if (_resourceSources != null)
                 {
-                    _resourceSource.OnEmaciated.RemoveAllListeners();
+                    _resourceSources.OnEmaciated.RemoveAllListeners();
                 }
 
-                _resourceSource = source;
+                _resourceSources = source;
                 source.OnEmaciated.AddListener(Clear);
                 return true;
             }
+            */
 
-            return false;
         }
 
+        /*
         public void AddOrReplace(ResourceSource source)
         {
-            _resourceSource = source;
+            _resourceSources = source;
         }
-
-        public void Clear()
+        */
+        
+        public void Clear(ResourceSource resourceSource)
         {
-            _resourceSource = null;
+            _resourceSources.Remove(resourceSource);
             OnClear?.Invoke();
         }
 
-        public ResourceSource GetLink()
+        public ResourceSource GetTargetResourceSource()
         {
-            return _resourceSource;
+            if (_targetResourceSource == null && _resourceSources.Count > 0)
+            {
+                _targetResourceSource = _resourceSources[Random.Range(0, _resourceSources.Count - 1)];
+            }
+            return _targetResourceSource;
         }
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1548814056}
   - component: {fileID: 1548814058}
   - component: {fileID: 1548814057}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5014,7 +5014,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 190245324062310692}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -5040,7 +5040,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.01, y: 0.03}
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.03
 --- !u!1 &1633701257088891174
 GameObject:
   m_ObjectHideFlags: 0
@@ -5089,6 +5089,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   seenResourcesSourcesCache: {fileID: 5224178591140640441}
+  radius: 10
   isTrigger: 1
 --- !u!58 &3385213008400134419
 CircleCollider2D:
@@ -5116,7 +5117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6348284723617455838}
   - component: {fileID: 5224178591140640441}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SeenFlowersCache
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5152,7 +5153,6 @@ MonoBehaviour:
   OnClear:
     m_PersistentCalls:
       m_Calls: []
-  _resourceSource: {fileID: 0}
 --- !u!1 &5961780655387353661
 GameObject:
   m_ObjectHideFlags: 0
