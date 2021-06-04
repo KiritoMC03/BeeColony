@@ -96,7 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069b52a64d4843ada3df9d034b0f7117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnEmaciated:
+    m_PersistentCalls:
+      m_Calls: []
+  IsEmaciated: 0
   _resource: {fileID: 2345676130182045728, guid: 1a0ed19d4cbf8e2448557a355cc02abe, type: 3}
+  timeToGenerate: 5
 --- !u!58 &3892204914661715480
 CircleCollider2D:
   m_ObjectHideFlags: 0

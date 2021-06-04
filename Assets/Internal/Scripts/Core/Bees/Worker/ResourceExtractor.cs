@@ -18,7 +18,6 @@ namespace BeeColony.Core.Bees.Worker
                 if (!storage.IsEmpty)
                 {
                     storage.Extract();
-                    Debug.Log($"Extract");
                     OnExtracted?.Invoke();
                 }
             }

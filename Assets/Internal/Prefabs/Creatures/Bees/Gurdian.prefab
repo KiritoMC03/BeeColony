@@ -4858,7 +4858,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   motor: {fileID: 3057964728617686090}
-  resourceRadar: {fileID: 0}
   parentHive: {fileID: 0}
   avoidForce: 10
   movementAroundHive: {fileID: 6661146950716240083}
@@ -4978,6 +4977,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   seenResourcesSourcesCache: {fileID: 0}
+  radius: 3
   isTrigger: 1
 --- !u!58 &3385213008400134419
 CircleCollider2D:

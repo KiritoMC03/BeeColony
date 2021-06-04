@@ -71,10 +71,6 @@ namespace BeeColony.Core.Bees.Worker
                     OnResourceSourceCached?.Invoke();
                 }
             }
-            else if(resourceSource != null)
-            {
-                seenResourcesSourcesCache.Clear(resourceSource);
-            }
         }
 
         /// <returns>Was it possible to add.</returns>

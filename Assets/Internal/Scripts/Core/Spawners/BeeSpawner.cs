@@ -9,12 +9,6 @@ namespace BeeColony.Core.Spawners
 {
     public class BeeSpawner : MonoBehaviourBase
     {
-        //[SerializeField] private List<ObjectPooler.ObjectInfo.BeeType> beeTypes;
-        
-        /*
-         [SerializeField] private ObjectPooler.ObjectInfo.BeeType beeType = 
-            ObjectPooler.ObjectInfo.BeeType.Worker;
-        */
         [SerializeField] private Hive fromHive;
 
         private void Awake()
@@ -24,16 +18,6 @@ namespace BeeColony.Core.Spawners
                 throw new NullReferenceException("Hive is null.");
             }
         }
-/*
-        public void Spawn()
-        {
-            for (int i = 0; i < beeTypes.Count; i++)
-            {
-                var bee = ObjectPooler.Instance.GetObject(beeTypes[i]).GetComponent<Bee>();
-                bee.SetParentHive(fromHive);
-            }
-        }
-        */
 
         private void Start()
         {

@@ -38,7 +38,6 @@ namespace BeeColony.Core.Bees.Worker
             if (resource != null)
             {
                 storage.Add(resource);
-                Debug.Log($"Collect!");
                 OnCollected?.Invoke();
             }
             InProcessOfCollecting = false;

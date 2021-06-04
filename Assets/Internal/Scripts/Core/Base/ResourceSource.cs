@@ -9,8 +9,10 @@ namespace BeeColony.Core
 {
     public abstract class ResourceSource : MonoBehaviourBase
     {
-        public bool IsEmaciated = false;
         public UnityEvent OnEmaciated;
+        
+        public bool IsEmaciated = false;
+        
         [SerializeField] protected Resource _resource;
         [SerializeField] protected float timeToGenerate = 3f;
 

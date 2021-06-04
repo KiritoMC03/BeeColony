@@ -5089,7 +5089,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   seenResourcesSourcesCache: {fileID: 5224178591140640441}
-  radius: 10
+  radius: 19.53
   isTrigger: 1
 --- !u!58 &3385213008400134419
 CircleCollider2D:
@@ -5153,6 +5153,8 @@ MonoBehaviour:
   OnClear:
     m_PersistentCalls:
       m_Calls: []
+  _resourceSources: []
+  _targetResourceSource: {fileID: 0}
 --- !u!1 &5961780655387353661
 GameObject:
   m_ObjectHideFlags: 0
