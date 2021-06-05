@@ -45,7 +45,6 @@ namespace BeeColony.Core.Bees.Base
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            ObstacleAvoidant.Avoid(myRigidbody, other.transform, avoidForce);
             OnCollisionEnter2D_Work(other);
         }
 

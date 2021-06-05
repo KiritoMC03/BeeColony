@@ -33,21 +33,21 @@ namespace BeeColony.Core.Bees.Worker
 
         protected override void FixedUpdate_Work()
         {
-            if (!resourceHandler.InProcessOfCollecting && resourceRadar.IsResourceSourceCached && resourceHandler.IsStorageEmpty)
+            if (!resourceHandler.InProcessOfCollecting && 
+                resourceRadar.IsResourceSourceCached && 
+                resourceHandler.IsStorageEmpty &&
+                resourceRadar.ResourceSource != null)
             {
-                Debug.Log($"A");
                 GoToResourceSource(resourceRadar.ResourceSource);
                 myCollider.enabled = true;
             }
             else if (!resourceHandler.IsStorageEmpty)
             {
-                Debug.Log($"B");
                 GoToParentHive(parentHive);
                 myCollider.enabled = false;
             }
             else
             {
-                Debug.Log($"C");
                 motor.Stop();
             }
         }

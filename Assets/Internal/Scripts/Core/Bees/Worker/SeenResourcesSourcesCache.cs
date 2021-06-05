@@ -42,14 +42,14 @@ namespace BeeColony.Core.Bees.Worker
         {
             if (_targetResourceSource == null && _resourceSources.Count > 0)
             {
-                Debug.Log("B-1");
+                //Debug.Log("B-1");
                 ChangeTargetResourceSource();
             }
             else if (_targetResourceSource != null)
             {
                 if (_targetResourceSource.IsEmaciated)
                 {
-                    Debug.Log("B-2");
+                    //Debug.Log("B-2");
                     ChangeTargetResourceSource();
                 }
             }
@@ -69,9 +69,9 @@ namespace BeeColony.Core.Bees.Worker
 
         private ResourceSource FindNotEmaciatedResource()
         {
-            Debug.Log("A");
+            //Debug.Log("A");
             int number;
-            for (int i = 0; i < _resourceSources.Count * 5; i++)
+            for (int i = 0; i < _resourceSources.Count * 3; i++)
             {
                 number = Random.Range(0, _resourceSources.Count);
                 if (!_resourceSources[number].IsEmaciated)

@@ -21,7 +21,7 @@ namespace BeeColony.Core.Spawners
 
         private void Start()
         {
-            for (int i = 0; i < 0; i++)
+            for (int i = 0; i < 100; i++)
             {
                 SpawnWorker();
             }
