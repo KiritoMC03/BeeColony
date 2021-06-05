@@ -29,11 +29,13 @@ namespace BeeColony.Core.Bees.Worker
             GetTargetResourceSource();
             return true;
         }
-
-        public void Clear(ResourceSource resourceSource)
+        
+        public void Remove(ResourceSource resourceSource)
         {
-            _resourceSources.Remove(resourceSource);
-            OnClear?.Invoke();
+            if (_resourceSources.Contains(resourceSource))
+            {
+                _resourceSources.Remove(resourceSource);   
+            }
         }
 
         public ResourceSource GetTargetResourceSource()
@@ -61,7 +63,7 @@ namespace BeeColony.Core.Bees.Worker
             _targetResourceSource = FindNotEmaciatedResource();
             if (_targetResourceSource != null)
             {
-                _targetResourceSource.OnEmaciated.AddListener(() => _targetResourceSource = FindNotEmaciatedResource());
+                _targetResourceSource.OnEmaciated.AddListener(Reset);
             }
         }
 
@@ -79,6 +81,14 @@ namespace BeeColony.Core.Bees.Worker
             }
             
             return null;
+        }
+
+        private void Reset()
+        {
+            Remove(_targetResourceSource);
+            _targetResourceSource = null;
+            _targetResourceSource = FindNotEmaciatedResource();
+            OnClear?.Invoke();
         }
     }
 }

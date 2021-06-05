@@ -15,11 +15,11 @@ namespace BeeColony.Core.Bees.Worker
         
         [SerializeField] private SeenResourcesSourcesCache seenResourcesSourcesCache;
         [SerializeField] private float radius = 10f;
+        [SerializeField] private float scanPeriod = 4f;
         
         [Header("Recommend True")]
         [SerializeField] private bool isTrigger = true;
         private CircleCollider2D _collider;
-        private Coroutine _periodicInspectionRoutine;
 
         private void Awake()
         {
@@ -30,33 +30,13 @@ namespace BeeColony.Core.Bees.Worker
 
         private void OnEnable()
         {
-            StartCoroutine(PeriodicInspection());
+            StartCoroutine(PeriodicScanning());
             seenResourcesSourcesCache.OnClear.AddListener(ReloadRadar);
         }
 
         private void OnDisable()
         {
-            if (_periodicInspectionRoutine != null)
-            {
-                StopCoroutine(_periodicInspectionRoutine);
-            }
             seenResourcesSourcesCache.OnClear.RemoveAllListeners();
-        }
-
-        public void EnableRadar()
-        {
-            _collider.enabled = true;
-        }
-        
-        public void DisableRadar()
-        {
-            _collider.enabled = false;
-        }
-
-        public void ReloadRadar()
-        {
-            DisableRadar();
-            EnableRadar();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -73,13 +53,19 @@ namespace BeeColony.Core.Bees.Worker
             }
         }
 
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            var resourceSource = other.GetComponent<ResourceSource>();
+            seenResourcesSourcesCache.Remove(resourceSource);
+        }
+
         /// <returns>Was it possible to add.</returns>
         private bool SendResourceSourceToCache(ResourceSource source)
         {
             return seenResourcesSourcesCache.Add(source);
         }
 
-        private IEnumerator PeriodicInspection()
+        private IEnumerator PeriodicScanning()
         {
             while (true)
             {
@@ -87,8 +73,24 @@ namespace BeeColony.Core.Bees.Worker
                 {
                     ReloadRadar();
                 }
-                yield return new WaitForSeconds(4f);
+                yield return new WaitForSeconds(scanPeriod);
             }
+        }
+
+        public void ReloadRadar()
+        {
+            DisableRadar();
+            EnableRadar();
+        }
+
+        public void EnableRadar()
+        {
+            _collider.enabled = true;
+        }
+        
+        public void DisableRadar()
+        {
+            _collider.enabled = false;
         }
     }
 }

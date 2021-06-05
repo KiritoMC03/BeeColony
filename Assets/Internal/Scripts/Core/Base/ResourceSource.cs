@@ -12,9 +12,10 @@ namespace BeeColony.Core
         public UnityEvent OnEmaciated;
         
         public bool IsEmaciated = false;
-        
+
         [SerializeField] protected Resource _resource;
         [SerializeField] protected float timeToGenerate = 3f;
+        private int count = 3;
 
         public Resource GetResource()
         {
@@ -22,7 +23,14 @@ namespace BeeColony.Core
             IsEmaciated = true;
             OnEmaciated?.Invoke();
             StartCoroutine(Generate());
+            count--;
+            if(count <= 0) Delete();
             return resource;
+        }
+
+        private void Delete()
+        {
+            Destroy(gameObject);
         }
 
         private IEnumerator Generate()

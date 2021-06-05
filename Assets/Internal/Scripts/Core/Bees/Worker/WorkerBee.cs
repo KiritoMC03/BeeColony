@@ -35,16 +35,19 @@ namespace BeeColony.Core.Bees.Worker
         {
             if (!resourceHandler.InProcessOfCollecting && resourceRadar.IsResourceSourceCached && resourceHandler.IsStorageEmpty)
             {
+                Debug.Log($"A");
                 GoToResourceSource(resourceRadar.ResourceSource);
                 myCollider.enabled = true;
             }
             else if (!resourceHandler.IsStorageEmpty)
             {
+                Debug.Log($"B");
                 GoToParentHive(parentHive);
                 myCollider.enabled = false;
             }
             else
             {
+                Debug.Log($"C");
                 motor.Stop();
             }
         }

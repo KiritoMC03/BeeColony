@@ -5089,7 +5089,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   seenResourcesSourcesCache: {fileID: 5224178591140640441}
-  radius: 19.53
+  radius: 3
+  scanPeriod: 4
   isTrigger: 1
 --- !u!58 &3385213008400134419
 CircleCollider2D:
