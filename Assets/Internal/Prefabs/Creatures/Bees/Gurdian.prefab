@@ -4978,6 +4978,7 @@ MonoBehaviour:
       m_Calls: []
   seenResourcesSourcesCache: {fileID: 0}
   radius: 3
+  scanPeriod: 4
   isTrigger: 1
 --- !u!58 &3385213008400134419
 CircleCollider2D:
@@ -5022,7 +5023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5961780655387353661}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.04, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 190245324062310697}
@@ -5038,7 +5039,7 @@ Animator:
   m_GameObject: {fileID: 5961780655387353661}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5b1870a6d4a941d4d8279db65386423c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 53c391e80d3e6154984eda5d171ba7ed, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5059,7 +5060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d637e039ed2481ba23245c44e6f2359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingAnimation: {fileID: 7400000, guid: 44c1ce84f4994d245b0facb80d7fb70e, type: 2}
+  startingAnimation: {fileID: 7400000, guid: 094b6d03f1d1813468af8a4926286d3c, type: 2}
   beeMotor: {fileID: 3057964728617686090}
   IsSeeRight: 1
 --- !u!212 &7734870254051522171
@@ -5102,8 +5103,8 @@ SpriteRenderer:
   m_SortingLayerID: -1362628157
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2332983640317547041, guid: bbe8f81d414e7b941be4d20f5f917d06, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 8455705829416297971, guid: dfc54d14f47c204429cb39138842d255, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
