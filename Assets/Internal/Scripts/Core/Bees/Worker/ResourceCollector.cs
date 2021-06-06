@@ -35,8 +35,11 @@ namespace BeeColony.Core.Bees.Worker
             yield return new WaitForSeconds(5f / speed);
                 
             var resource = resourceSource.GetResource();
+            
+            Debug.Log($"preAdd: {resource != null}");
             if (resource != null)
             {
+                Debug.Log($"ADD Start");
                 storage.Add(resource);
                 OnCollected?.Invoke();
             }

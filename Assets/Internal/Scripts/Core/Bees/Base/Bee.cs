@@ -1,5 +1,4 @@
-﻿using System;
-using BeeColony.Core.Bees.Worker;
+﻿using BeeColony.Core.Buildings;
 using ObjectPool;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,11 +17,14 @@ namespace BeeColony.Core.Bees.Base
 
         [SerializeField] protected float avoidForce = 10f;
 
+        
+        protected Transform myTransform;
         protected Rigidbody2D myRigidbody;
         protected Collider2D myCollider;
 
         private void Awake()
         {
+            myTransform = transform;
             myRigidbody = GetSafeComponent<Rigidbody2D>();
             myCollider = GetSafeComponent<Collider2D>();
             Awake_Work();

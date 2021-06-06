@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3892204914661715687}
   - component: {fileID: 3892204914661715481}
   - component: {fileID: 3892204914661715480}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Flower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
       m_Calls: []
   IsEmaciated: 0
   _resource: {fileID: 2345676130182045728, guid: 1a0ed19d4cbf8e2448557a355cc02abe, type: 3}
-  timeToGenerate: 5
+  timeToGenerate: 0.5
 --- !u!58 &3892204914661715480
 CircleCollider2D:
   m_ObjectHideFlags: 0

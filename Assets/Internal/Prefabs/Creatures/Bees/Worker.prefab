@@ -4818,7 +4818,7 @@ GameObject:
   - component: {fileID: 8800117695713796717}
   - component: {fileID: 5058351343256000596}
   - component: {fileID: 3726735172797972713}
-  m_Layer: 14
+  m_Layer: 24
   m_Name: ResourceHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4911,7 +4911,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48fda186d6bb44349b0999192d16a61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resource: {fileID: 0}
 --- !u!58 &3726735172797972713
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4939,9 +4938,10 @@ GameObject:
   - component: {fileID: 190245324062310697}
   - component: {fileID: -2190471153199929571}
   - component: {fileID: 3057964728617686090}
+  - component: {fileID: 3613092302518844113}
   - component: {fileID: 4590056741012484184}
   - component: {fileID: 2582730330242499899}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: Worker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4988,6 +4988,7 @@ MonoBehaviour:
   resourceHandler: {fileID: 1872164652}
   resourceRadar: {fileID: 6791451347955172297}
   pollenEffect: {fileID: 1548814055}
+  _wanderingMode: {fileID: 3613092302518844113}
 --- !u!114 &3057964728617686090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5004,6 +5005,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   moveSpeed: 50
+--- !u!114 &3613092302518844113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190245324062310692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd590aa22d7841329503c4ccbdc4f73d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
 --- !u!50 &4590056741012484184
 Rigidbody2D:
   serializedVersion: 4
@@ -5052,7 +5066,7 @@ GameObject:
   - component: {fileID: 6346407625427460783}
   - component: {fileID: 6791451347955172297}
   - component: {fileID: 3385213008400134419}
-  m_Layer: 13
+  m_Layer: 21
   m_Name: BeeRadar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5263,7 +5277,7 @@ SpriteRenderer:
   m_SortingLayerID: -1362628157
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1579895555914699645, guid: dfc54d14f47c204429cb39138842d255, type: 3}
+  m_Sprite: {fileID: 1579895555914699645, guid: 99b8620427064114d86432fbff221278, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0

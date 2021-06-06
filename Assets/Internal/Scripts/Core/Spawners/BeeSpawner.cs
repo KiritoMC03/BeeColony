@@ -1,6 +1,7 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using BeeColony.Core.Bees.Base;
+using BeeColony.Core.Buildings;
 using UnityEngine;
 using Utils;
 using ObjectPool;
@@ -10,6 +11,8 @@ namespace BeeColony.Core.Spawners
     public class BeeSpawner : MonoBehaviourBase
     {
         [SerializeField] private Hive fromHive;
+        [Range(0.05f, 1f)]
+        [SerializeField] private float time = 0.1f;
 
         private void Awake()
         {
@@ -21,10 +24,13 @@ namespace BeeColony.Core.Spawners
 
         private void Start()
         {
+
+            StartCoroutine(SpawtRoutine());
+            /*
             for (int i = 0; i < 100; i++)
             {
                 SpawnWorker();
-            }
+            }*/
         }
 
         public void SpawnWorker()
@@ -41,6 +47,16 @@ namespace BeeColony.Core.Spawners
         {
             var bee = ObjectPooler.Instance.GetObject(beeType).GetComponent<Bee>();
             bee.SetParentHive(fromHive);
+        }
+
+        private IEnumerator SpawtRoutine()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                //Spawn(ObjectPooler.ObjectInfo.BeeType.Guardian);
+                Spawn(ObjectPooler.ObjectInfo.BeeType.Worker);
+                yield return new WaitForSeconds(time);
+            }
         }
     }
 }

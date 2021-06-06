@@ -1,7 +1,7 @@
 ﻿using BeeColony.Core.Bees.Base;
+using BeeColony.Core.Buildings;
 using UnityEngine;
 using UnityEngine.Events;
-using Utils;
 
 namespace BeeColony.Core.Bees.Worker
 {
@@ -13,13 +13,10 @@ namespace BeeColony.Core.Bees.Worker
         {
             var hive = other.GetComponent<Hive>();
 
-            if (hive != null)
+            if (hive != null && !storage.IsEmpty)
             {
-                if (!storage.IsEmpty)
-                {
-                    storage.Extract();
-                    OnExtracted?.Invoke();
-                }
+                hive.AcceptResource(storage.Extract());
+                OnExtracted?.Invoke();
             }
         }
     }

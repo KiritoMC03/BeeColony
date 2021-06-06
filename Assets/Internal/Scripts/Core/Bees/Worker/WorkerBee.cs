@@ -1,4 +1,5 @@
 ﻿using BeeColony.Core.Bees.Base;
+using BeeColony.Core.Buildings;
 using ObjectPool;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace BeeColony.Core.Bees.Worker
         [SerializeField] protected BeeResourceHandler resourceHandler;
         [SerializeField] protected BeeResourceRadar resourceRadar;
         [SerializeField] protected GameObject pollenEffect;
+        [SerializeField] protected WanderingMode _wanderingMode;
 
         protected override void OnEnable_Work()
         {
@@ -46,6 +48,10 @@ namespace BeeColony.Core.Bees.Worker
                 GoToParentHive(parentHive);
                 myCollider.enabled = false;
             }
+            else if (resourceHandler.IsStorageEmpty && !resourceRadar.IsResourceSourceCached)
+            {
+                Wander();
+            }
             else
             {
                 motor.Stop();
@@ -59,6 +65,11 @@ namespace BeeColony.Core.Bees.Worker
         private void GoToParentHive(Hive hive)
         {
             motor.PhysicalMoveTo(hive.Position);
+        }
+
+        private void Wander()
+        {
+            motor.PhysicalMoveTo(_wanderingMode.GetNextPosition(myTransform.position));
         }
 
         internal void SetParentHive(Hive hive)

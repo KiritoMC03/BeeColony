@@ -22,9 +22,10 @@ namespace BeeColony.Core.Spawners
             var container = Instantiate(_emptyGameObject);
             container.name = resourceSource.GetType().Name + "`s";
             container.isStatic = true;
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 200; i++)
             {
                 var position = Random.insideUnitCircle * spawnRadius;
+                position += position.normalized;
 
                 Instantiate(resourceSource, position, quaternion.identity, container.transform);
             }

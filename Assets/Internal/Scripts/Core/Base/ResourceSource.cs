@@ -13,13 +13,12 @@ namespace BeeColony.Core
         
         public bool IsEmaciated = false;
 
-        [SerializeField] protected Resource _resource;
         [SerializeField] protected float timeToGenerate = 3f;
         private int count = 3;
 
         public Resource GetResource()
         {
-            var resource = Instantiate(_resource);
+            var resource = new Pollen();
             IsEmaciated = true;
             OnEmaciated?.Invoke();
             StartCoroutine(Generate());

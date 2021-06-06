@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using Utils;
 
 namespace BeeColony.Core.Bees.Worker
@@ -15,6 +16,8 @@ namespace BeeColony.Core.Bees.Worker
             if (_resource == null)
             {
                 _resource = resource;
+                
+                Debug.Log($"ADD End: {_resource != null}");
                 OnStorageChange?.Invoke();
             }
         }

@@ -2,8 +2,8 @@
 
 namespace BeeColony.Core
 {
-    public abstract class Resource : MonoBehaviourBase
+    public abstract class Resource
     {
-        
+        protected float Value = 0f;
     }
 }

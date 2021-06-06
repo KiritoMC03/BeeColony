@@ -1,23 +1,31 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Utils;
 
-public class Hive : MonoBehaviourBase
+namespace BeeColony.Core.Buildings
 {
-    public static Hive Instance;
-    
-    public Vector3 Position => _transform.position;
-
-    private Transform _transform;
-
-    private void Awake()
+    public class Hive : MonoBehaviourBase
     {
-        InitFields();
-    }
+        public static Hive Instance;
+        public Vector3 Position => _transform.position;
 
-    private void InitFields()
-    {
-        Instance = this;
-        _transform = transform;
+        [SerializeField] private Warehouse warehouse;
+        
+        private Transform _transform;
+
+        private void Awake()
+        {
+            InitFields();
+        }
+
+        private void InitFields()
+        {
+            Instance = this;
+            _transform = transform;
+        }
+
+        public void AcceptResource(Resource resource)
+        {
+            warehouse.Add(resource);
+        }
     }
 }
