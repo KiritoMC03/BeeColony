@@ -9,14 +9,17 @@ namespace BeeColony.Core.Bees.Worker
     {
         [SerializeField] private float radius = 3f;
         private Vector2 _target;
+        private int _moveAttempt = 100;
         
         public Vector2 GetNextPosition(Vector2 currentPosition)
         {
-            if (CheckForTargetReaching(currentPosition))
+            if (CheckForTargetReaching(currentPosition) || _moveAttempt <= 0)
             {
                 _target = currentPosition + Random.insideUnitCircle * radius;
+                _moveAttempt = 100;
             }
 
+            _moveAttempt--;
             return _target;
         }
 

@@ -1,7 +1,7 @@
-﻿using UnityEditor;
+﻿/*using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(TilemapGenerator))]
+[CustomEditor(typeof(TilemapGenerator)), ExecuteAlways]
 public class TilemapGeneratorGui : Editor
 {
     public override void OnInspectorGUI()
@@ -12,4 +12,4 @@ public class TilemapGeneratorGui : Editor
             TilemapGenerator.Instance.Generate();
         }
     }
-}
+}*/

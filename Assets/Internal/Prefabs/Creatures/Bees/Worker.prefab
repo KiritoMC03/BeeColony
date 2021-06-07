@@ -5017,7 +5017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd590aa22d7841329503c4ccbdc4f73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
+  radius: 7
 --- !u!50 &4590056741012484184
 Rigidbody2D:
   serializedVersion: 4

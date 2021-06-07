@@ -9,6 +9,7 @@ namespace BeeColony.Core.Spawners
     public class ResourceSourcesSpawner : MonoBehaviourBase
     {
         [SerializeField] private float spawnRadius = 30f;
+        [SerializeField] private uint count = 200;
         [SerializeField] private ResourceSource resourceSource;
         private GameObject _emptyGameObject;
 
@@ -22,10 +23,9 @@ namespace BeeColony.Core.Spawners
             var container = Instantiate(_emptyGameObject);
             container.name = resourceSource.GetType().Name + "`s";
             container.isStatic = true;
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < count; i++)
             {
-                var position = Random.insideUnitCircle * spawnRadius;
-                position += position.normalized;
+                var position = PointGenerator.InSquare(spawnRadius);
 
                 Instantiate(resourceSource, position, quaternion.identity, container.transform);
             }
