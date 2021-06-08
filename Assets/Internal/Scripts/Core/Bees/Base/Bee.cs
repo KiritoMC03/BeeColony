@@ -9,15 +9,18 @@ namespace BeeColony.Core.Bees.Base
     public class Bee : MonoBehaviourBase, IPooledObject
     {
         public UnityEvent OnHiveSet;
-        
-        public ObjectPooler.ObjectInfo.BeeType Type { get; }
 
+        public ObjectPooler.ObjectInfo.BeeType Type => type;
+        [SerializeField] private ObjectPooler.ObjectInfo.BeeType type;
+
+        [Header("Any Bee")]
         [SerializeField] protected BeeMotor motor;
         [SerializeField] protected Hive parentHive;
 
-        [SerializeField] protected float avoidForce = 10f;
+        [Header("Description")]
+        [SerializeField] protected string name = "Пчела";
+        [SerializeField] protected SpriteRenderer spriteRenderer;
 
-        
         protected Transform myTransform;
         protected Rigidbody2D myRigidbody;
         protected Collider2D myCollider;
@@ -65,6 +68,16 @@ namespace BeeColony.Core.Bees.Base
         internal virtual void GoToParentHive(Hive hive)
         {
             motor.PhysicalMoveTo(hive.Position);
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
+
+        public Sprite GetSprite()
+        {
+            return spriteRenderer.sprite;
         }
     }
 }

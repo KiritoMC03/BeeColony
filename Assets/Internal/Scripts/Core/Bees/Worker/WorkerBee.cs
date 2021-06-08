@@ -9,6 +9,7 @@ namespace BeeColony.Core.Bees.Worker
     {
         public ObjectPooler.ObjectInfo.BeeType Type { get; }
 
+        [Header("Worker Bee")]
         [SerializeField] protected BeeResourceHandler resourceHandler;
         [SerializeField] protected BeeResourceRadar resourceRadar;
         [SerializeField] protected GameObject pollenEffect;

@@ -5,6 +5,7 @@ namespace BeeColony.Core.Bees.Guard
 {
     public class GuardianBee : Bee
     {
+        [Header("Guardian Bee")]
         [SerializeField] private MovementAroundHive movementAroundHive;
 
         protected override void Awake_Work()

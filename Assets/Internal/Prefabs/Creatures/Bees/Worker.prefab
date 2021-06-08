@@ -4984,7 +4984,8 @@ MonoBehaviour:
       m_Calls: []
   motor: {fileID: 3057964728617686090}
   parentHive: {fileID: 0}
-  avoidForce: 10
+  name: "\u0420\u0430\u0431\u043E\u0447\u0430\u044F \u041F\u0447\u0435\u043B\u0430"
+  spriteRenderer: {fileID: 7734870254051522171}
   resourceHandler: {fileID: 1872164652}
   resourceRadar: {fileID: 6791451347955172297}
   pollenEffect: {fileID: 1548814055}

@@ -4857,9 +4857,11 @@ MonoBehaviour:
   OnHiveSet:
     m_PersistentCalls:
       m_Calls: []
+  type: 1
   motor: {fileID: 3057964728617686090}
   parentHive: {fileID: 0}
-  avoidForce: 10
+  name: "\u041F\u0447\u0435\u043B\u0430-\u041E\u0445\u0440\u0430\u043D\u043D\u0438\u043A"
+  spriteRenderer: {fileID: 7734870254051522171}
   movementAroundHive: {fileID: 6661146950716240083}
 --- !u!114 &6661146950716240083
 MonoBehaviour:

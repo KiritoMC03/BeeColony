@@ -32,6 +32,12 @@ namespace BeeColony.Core.Spawners
                 SpawnWorker();
             }*/
         }
+        
+        public void Spawn(Bee bee)
+        {
+            Debug.Log($"Spawn: {bee.Type}");
+            ObjectPooler.Instance.GetObject(bee.Type).GetComponent<Bee>().SetParentHive(fromHive);
+        }
 
         public void SpawnWorker()
         {
@@ -51,7 +57,7 @@ namespace BeeColony.Core.Spawners
 
         private IEnumerator SpawtRoutine()
         {
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 0; i++)
             {
                 //Spawn(ObjectPooler.ObjectInfo.BeeType.Guardian);
                 Spawn(ObjectPooler.ObjectInfo.BeeType.Worker);
