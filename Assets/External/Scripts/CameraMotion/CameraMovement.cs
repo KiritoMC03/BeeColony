@@ -7,6 +7,8 @@ namespace CameraMotion
     {
         [SerializeField] private Camera camera;
         [SerializeField] private float speed = 1f;
+        [SerializeField] private bool ignoreZoom;
+        [SerializeField] private CameraZoom zoom;
 
         private Transform _cameraTransform;
         private Vector3 _touсh;
@@ -19,6 +21,7 @@ namespace CameraMotion
         
         private void Update()
         {
+            if(zoom.IsZooming) return;
             if (Input.GetMouseButtonDown(0))
             {
                 _touсh = camera.ScreenToWorldPoint(Input.mousePosition);

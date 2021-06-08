@@ -5,6 +5,8 @@ namespace CameraMotion
 {
     public class CameraZoom : MonoBehaviourBase
     {
+        public bool IsZooming = false;
+        
         [SerializeField] private Camera camera;
         [SerializeField] private float min = 1f;
         [SerializeField] private float max = 10f;
@@ -41,12 +43,19 @@ namespace CameraMotion
                 var direction = _touсh - camera.ScreenToWorldPoint(Input.mousePosition);
                 _cameraTransform.position += direction;
             }
-
-            Zoom(Input.GetAxis("Mouse ScrollWheel"));
+            else if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+            {
+                Zoom(Input.GetAxis("Mouse ScrollWheel"));
+            }
+            else
+            {
+                IsZooming = false;
+            }
         }
 
         private void Zoom(float increment)
         {
+            IsZooming = true;
             camera.orthographicSize = Mathf.Clamp(
                 camera.orthographicSize - increment,
                 min,
