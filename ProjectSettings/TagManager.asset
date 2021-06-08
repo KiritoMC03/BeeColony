@@ -31,7 +31,7 @@ TagManager:
   - 
   - BeeResourceWork
   - 
-  - 
+  - UnkmownZone
   - 
   - UI
   - 
@@ -56,6 +56,9 @@ TagManager:
   - name: Bees
     uniqueID: 2932339139
     locked: 0
-  - name: UI
+  - name: UnknownZone
     uniqueID: 760775595
+    locked: 0
+  - name: UI
+    uniqueID: 753280281
     locked: 0
