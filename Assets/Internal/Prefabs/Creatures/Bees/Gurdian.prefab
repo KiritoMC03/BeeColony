@@ -4863,6 +4863,7 @@ MonoBehaviour:
   name: "\u041F\u0447\u0435\u043B\u0430-\u041E\u0445\u0440\u0430\u043D\u043D\u0438\u043A"
   spriteRenderer: {fileID: 7734870254051522171}
   movementAroundHive: {fileID: 6661146950716240083}
+  seenEnemyCache: {fileID: 7530739700292480483}
 --- !u!114 &6661146950716240083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4940,7 +4941,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6346407625427460783}
-  - component: {fileID: 6791451347955172297}
+  - component: {fileID: 4256062555821096318}
+  - component: {fileID: 7530739700292480483}
   - component: {fileID: 3385213008400134419}
   m_Layer: 21
   m_Name: BeeRadar
@@ -4948,7 +4950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6346407625427460783
 Transform:
   m_ObjectHideFlags: 0
@@ -4963,7 +4965,7 @@ Transform:
   m_Father: {fileID: 190245324062310697}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6791451347955172297
+--- !u!114 &4256062555821096318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4972,16 +4974,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1633701257088891174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93c59f5b463b4663adbb560c13a1cd00, type: 3}
+  m_Script: {fileID: 11500000, guid: 11cf353cbf9b4a269e32f231fde2b349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnResourceSourceCached:
+  seenEnemyCache: {fileID: 7530739700292480483}
+--- !u!114 &7530739700292480483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633701257088891174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61806205df364586972966c2132ed843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCached:
     m_PersistentCalls:
       m_Calls: []
-  seenResourcesSourcesCache: {fileID: 0}
-  radius: 3
-  scanPeriod: 4
-  isTrigger: 1
+  isCached: 0
 --- !u!58 &3385213008400134419
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5063,7 +5075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingAnimation: {fileID: 7400000, guid: 094b6d03f1d1813468af8a4926286d3c, type: 2}
-  beeMotor: {fileID: 3057964728617686090}
+  motor: {fileID: 3057964728617686090}
   IsSeeRight: 1
 --- !u!212 &7734870254051522171
 SpriteRenderer:

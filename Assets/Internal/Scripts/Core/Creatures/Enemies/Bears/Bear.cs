@@ -1,17 +1,11 @@
-﻿using System;
-using BeeColony.Core.Buildings;
-using ObjectPool;
+﻿using BeeColony.Core.Buildings;
+using Internal.Scripts.Core.Creatures.Enemies;
 using UnityEngine;
-using Utils;
-using PooledObjectType = ObjectPool.ObjectPooler.ObjectInfo.ObjectType;
 
 namespace BeeColony.Core.Enemies
 {
-    public class Bear : MonoBehaviourBase, IPooledObject
+    public class Bear : Enemy
     {
-        public PooledObjectType Type => type;
-        [SerializeField] private PooledObjectType type = PooledObjectType.Bear;
-        
         [SerializeField] private BearMotor motor;
         [SerializeField] private BearRadar radar;
 
@@ -20,12 +14,12 @@ namespace BeeColony.Core.Enemies
         private bool _seePrimaryHive = false;
         private bool _seeTempTargetHive = false;
 
-        private void Start()
+        protected override void Start_Work()
         {
             radar.OnHiveSeen.AddListener(GetTargetHiveFromRadar);
         }
 
-        private void FixedUpdate()
+        protected override void FixedUpdate_Work()
         {
             if (_seeTempTargetHive)
             {

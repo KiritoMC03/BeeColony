@@ -5237,7 +5237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingAnimation: {fileID: 7400000, guid: 44c1ce84f4994d245b0facb80d7fb70e, type: 2}
-  beeMotor: {fileID: 3057964728617686090}
+  motor: {fileID: 3057964728617686090}
   IsSeeRight: 1
 --- !u!212 &7734870254051522171
 SpriteRenderer:

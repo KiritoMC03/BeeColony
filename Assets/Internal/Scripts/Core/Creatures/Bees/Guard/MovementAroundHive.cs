@@ -8,6 +8,8 @@ namespace BeeColony.Core.Bees
 {
     public class MovementAroundHive : MonoBehaviourBase
     {
+        public bool IsEnable { get; private set; }
+        
         [SerializeField] private float radius = 3f;
         [SerializeField] private Motor motor;
         [SerializeField] private float checkPositionPeriod = 3f;
@@ -28,12 +30,23 @@ namespace BeeColony.Core.Bees
 
         private void FixedUpdate()
         {
+            if(!IsEnable) return;
             motor.PhysicalMoveTo(_target);
         }
 
         public void SetHive(Hive hive)
         {
             _hive = hive;
+        }
+        
+        public void Enable()
+        {
+            IsEnable = true;
+        }
+        
+        public void Disable()
+        {
+            IsEnable = false;
         }
 
         private Vector2 FindNextPosition()
