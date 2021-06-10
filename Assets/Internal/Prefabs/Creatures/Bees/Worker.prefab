@@ -4982,6 +4982,7 @@ MonoBehaviour:
   OnHiveSet:
     m_PersistentCalls:
       m_Calls: []
+  type: 0
   motor: {fileID: 3057964728617686090}
   parentHive: {fileID: 0}
   name: "\u0420\u0430\u0431\u043E\u0447\u0430\u044F \u041F\u0447\u0435\u043B\u0430"
@@ -4989,7 +4990,7 @@ MonoBehaviour:
   resourceHandler: {fileID: 1872164652}
   resourceRadar: {fileID: 6791451347955172297}
   pollenEffect: {fileID: 1548814055}
-  _wanderingMode: {fileID: 3613092302518844113}
+  wanderingMode: {fileID: 3613092302518844113}
 --- !u!114 &3057964728617686090
 MonoBehaviour:
   m_ObjectHideFlags: 0

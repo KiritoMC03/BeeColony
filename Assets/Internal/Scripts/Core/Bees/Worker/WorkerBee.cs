@@ -13,7 +13,7 @@ namespace BeeColony.Core.Bees.Worker
         [SerializeField] protected BeeResourceHandler resourceHandler;
         [SerializeField] protected BeeResourceRadar resourceRadar;
         [SerializeField] protected GameObject pollenEffect;
-        [SerializeField] protected WanderingMode _wanderingMode;
+        [SerializeField] protected WanderingMode wanderingMode;
 
         protected override void OnEnable_Work()
         {
@@ -52,6 +52,7 @@ namespace BeeColony.Core.Bees.Worker
             else if (resourceHandler.IsStorageEmpty && !resourceRadar.IsResourceSourceCached)
             {
                 Wander();
+                myCollider.enabled = true;
             }
             else
             {
@@ -70,7 +71,7 @@ namespace BeeColony.Core.Bees.Worker
 
         private void Wander()
         {
-            motor.PhysicalMoveTo(_wanderingMode.GetNextPosition(myTransform.position));
+            motor.PhysicalMoveTo(wanderingMode.GetNextPosition(myTransform.position));
         }
 
         internal void SetParentHive(Hive hive)
