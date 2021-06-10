@@ -10,7 +10,7 @@ namespace ObjectPool
         internal static ObjectPooler Instance;
         [SerializeField] private List<ObjectInfo> ObjectsInfo;
 
-        private Dictionary<ObjectInfo.BeeType, Pool> _pools;
+        private Dictionary<ObjectInfo.ObjectType, Pool> _pools;
         private GameObject _emptyGameObject;
         private GameObject _tempContainer;
         private GameObject _tempStartGameObject;
@@ -19,12 +19,13 @@ namespace ObjectPool
         [Serializable]
         public struct ObjectInfo
         {
-            public enum BeeType
+            public enum ObjectType
             {
                 Worker,
-                Guardian
+                Guardian,
+                Bear
             }
-            public BeeType Type;
+            public ObjectType Type;
             [Header("Require IPooledObject component.")]
             public GameObject Prefab;
             public int StartCount;
@@ -44,7 +45,7 @@ namespace ObjectPool
 
         private void InitPool()
         {
-            _pools = new Dictionary<ObjectInfo.BeeType, Pool>();
+            _pools = new Dictionary<ObjectInfo.ObjectType, Pool>();
 
             foreach (var obj in ObjectsInfo)
             {
@@ -62,14 +63,14 @@ namespace ObjectPool
             Destroy(_emptyGameObject);
         }
 
-        private GameObject InstantiateObject(ObjectInfo.BeeType type, Transform parent)
+        private GameObject InstantiateObject(ObjectInfo.ObjectType type, Transform parent)
         {
             _tempInstantiateGameObject = Instantiate(ObjectsInfo.Find(elem => elem.Type == type).Prefab, parent);
             _tempInstantiateGameObject.SetActive(false);
             return _tempInstantiateGameObject;
         }
 
-        public GameObject GetObject(ObjectInfo.BeeType type)
+        public GameObject GetObject(ObjectInfo.ObjectType type)
         {
             var obj = (_pools[type].objects.Count > 0) ?
                 _pools[type].objects.Dequeue() : InstantiateObject(type, _pools[type].container);

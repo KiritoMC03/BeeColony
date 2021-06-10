@@ -1,4 +1,4 @@
-﻿using BeeColony.Core.Bees.Base;
+﻿using BeeColony.Core.Bees;
 using BeeColony.Core.Spawners;
 using UnityEngine;
 

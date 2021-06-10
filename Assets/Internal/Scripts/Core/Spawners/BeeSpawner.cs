@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using BeeColony.Core.Bees.Base;
+using BeeColony.Core.Bees;
 using BeeColony.Core.Buildings;
 using UnityEngine;
 using Utils;
@@ -41,17 +41,17 @@ namespace BeeColony.Core.Spawners
 
         public void SpawnWorker()
         {
-            Spawn(ObjectPooler.ObjectInfo.BeeType.Worker);
+            Spawn(ObjectPooler.ObjectInfo.ObjectType.Worker);
         }
         
         public void SpawnGuardian()
         {
-            Spawn(ObjectPooler.ObjectInfo.BeeType.Guardian);
+            Spawn(ObjectPooler.ObjectInfo.ObjectType.Guardian);
         } 
 
-        private void Spawn(ObjectPooler.ObjectInfo.BeeType beeType)
+        private void Spawn(ObjectPooler.ObjectInfo.ObjectType objectType)
         {
-            var bee = ObjectPooler.Instance.GetObject(beeType).GetComponent<Bee>();
+            var bee = ObjectPooler.Instance.GetObject(objectType).GetComponent<Bee>();
             bee.SetParentHive(fromHive);
         }
 
@@ -60,7 +60,7 @@ namespace BeeColony.Core.Spawners
             for (int i = 0; i < 0; i++)
             {
                 //Spawn(ObjectPooler.ObjectInfo.BeeType.Guardian);
-                Spawn(ObjectPooler.ObjectInfo.BeeType.Worker);
+                Spawn(ObjectPooler.ObjectInfo.ObjectType.Worker);
                 yield return new WaitForSeconds(time);
             }
         }

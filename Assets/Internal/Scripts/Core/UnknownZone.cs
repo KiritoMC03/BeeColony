@@ -2,7 +2,7 @@
 using UnityEngine;
 using Utils;
 
-namespace BeeColony.Core.Bees.Base
+namespace BeeColony.Core.Bees
 {
     public class UnknownZone : MonoBehaviourBase
     {

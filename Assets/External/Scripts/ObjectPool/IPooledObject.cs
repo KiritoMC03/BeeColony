@@ -2,6 +2,6 @@
 {
     public interface IPooledObject
     {
-        ObjectPooler.ObjectInfo.BeeType Type { get; }
+        ObjectPooler.ObjectInfo.ObjectType Type { get; }
     }
 }
