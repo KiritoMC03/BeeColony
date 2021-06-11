@@ -15,17 +15,17 @@ namespace Internal.Scripts.Core.Statistics
         private void OnEnable()
         {
             SetResourcesTexts();
-            warehouse.OnHoneycombsCountChange.AddListener(SetResourcesTexts);
+            warehouse.OnCombsCountChange.AddListener(SetResourcesTexts);
         }
 
         private void OnDisable()
         {
-            warehouse.OnHoneycombsCountChange.RemoveAllListeners();
+            warehouse.OnCombsCountChange.RemoveAllListeners();
         }
 
         private void SetResourcesTexts()
         {
-            honeycombValueText.text = warehouse.GetHoneycombsCount().ToString();
+            honeycombValueText.text = warehouse.GetCombsCount().ToString();
         }
     }
 }

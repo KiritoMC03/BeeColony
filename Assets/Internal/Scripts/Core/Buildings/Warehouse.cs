@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BeeColony.Core.Resources;
+using UnityEngine;
 using UnityEngine.Events;
 using Utils;
 
@@ -8,27 +9,60 @@ namespace BeeColony.Core.Buildings
 {
     public class Warehouse : MonoBehaviourBase
     {
-        public UnityEvent OnHoneycombsCountChange;
+        public UnityEvent OnPollenCountChange;
+        public UnityEvent OnCombsCountChange;
         
-        private List<Honeycomb> _honeycombs = new List<Honeycomb>();
+        private List<Pollen> _pollen = new List<Pollen>();
+        private List<Comb> _combs = new List<Comb>();
 
         public void Add(Resource resource)
         {
-            if (resource is Honeycomb honeycomb)
+            if (resource is Pollen pollen)
             {
-                AddHoneycomb(honeycomb);
+                AddPollen(pollen);
+            }
+            else if (resource is Comb comb)
+            {
+                AddComb(comb);
             }
         }
 
-        public int GetHoneycombsCount()
+        public int GetPollenCount()
         {
-            return _honeycombs.Count;
+            return _pollen.Count;
         }
 
-        private void AddHoneycomb(Honeycomb honeycomb)
+        public int GetCombsCount()
         {
-            _honeycombs.Add(honeycomb);
-            OnHoneycombsCountChange?.Invoke();
+            return _combs.Count;
+        }
+
+        public Pollen ExtractPollen()
+        {
+            var pollen = _pollen[_pollen.Count - 1];
+            _pollen.Remove(pollen);
+            return pollen;
+        }
+
+        public Comb ExtractComb()
+        {
+            var comb = _combs[_combs.Count - 1];
+            _combs.Remove(comb);
+            return comb;
+        }
+
+        private void AddPollen(Pollen pollen)
+        {
+            _pollen.Add(pollen);
+            OnPollenCountChange?.Invoke();
+        }
+        
+
+        private void AddComb(Comb comb)
+        {
+            _combs.Add(comb);
+            OnCombsCountChange?.Invoke();
+            Debug.Log("A!");
         }
     }
 }
