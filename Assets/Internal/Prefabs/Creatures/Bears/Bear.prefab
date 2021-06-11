@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 7029202881889495064}
   - component: {fileID: 2098651133147710941}
   - component: {fileID: 4084340649532454019}
-  m_Layer: 16
+  m_Layer: 14
   m_Name: Bear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &4084340649532454019
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -262,9 +262,9 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.04, y: 0.03}
   serializedVersion: 2
-  m_Radius: 0.22
+  m_Radius: 0.13

@@ -19,9 +19,9 @@ TagManager:
   - 
   - ResourcesSources
   - 
-  - 
-  - Bees
   - Enemies
+  - Bees
+  - 
   - 
   - GuardianBees
   - 
@@ -50,15 +50,18 @@ TagManager:
   - name: Resources
     uniqueID: 3931010759
     locked: 0
-  - name: New Layer
+  - name: 
     uniqueID: 3498041107
     locked: 0
-  - name: Bees
+  - name: Enemies
     uniqueID: 2932339139
     locked: 0
-  - name: UnknownZone
+  - name: Bees
     uniqueID: 760775595
     locked: 0
-  - name: UI
+  - name: UnknownZone
     uniqueID: 753280281
+    locked: 0
+  - name: UI
+    uniqueID: 1859082819
     locked: 0
