@@ -1,4 +1,5 @@
-﻿using BeeColony.Core.Bees;
+﻿using System;
+using BeeColony.Core.Bees;
 using Internal.Scripts.Core.Creatures.Enemies;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace BeeColony.Core.Bees
         [Header("Guardian Bee")]
         [SerializeField] private MovementAroundHive movementAroundHive;
         [SerializeField] private SeenEnemyCache seenEnemyCache;
+        [SerializeField] private BeeAttack beeAttack;
 
         private Enemy _targetEnemy;
 
@@ -21,6 +23,10 @@ namespace BeeColony.Core.Bees
 
         protected override void FixedUpdate_Work()
         {
+            if (beeAttack.IsAttackingNow)
+            {
+                motor.Stop();
+            }
             if (!movementAroundHive.IsEnable)
             {
                 if (_targetEnemy == null)
@@ -36,6 +42,24 @@ namespace BeeColony.Core.Bees
         {
             movementAroundHive.Disable();
             _targetEnemy = seenEnemyCache.Extract();
+        }
+
+        protected override void OnTriggerEnter2D_Work(Collider2D other)
+        {
+            var enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                beeAttack.StartAttack(enemy);
+            }
+        }
+
+        protected override void OnTriggerExit2D_Work(Collider2D other)
+        {
+            var enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                beeAttack.EndAttack(enemy);
+            }
         }
     }
 }

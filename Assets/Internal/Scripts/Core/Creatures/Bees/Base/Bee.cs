@@ -1,4 +1,5 @@
-﻿using BeeColony.Core.Buildings;
+﻿using System;
+using BeeColony.Core.Buildings;
 using ObjectPool;
 using UnityEngine;
 using UnityEngine.Events;
@@ -53,11 +54,23 @@ namespace BeeColony.Core.Bees
             OnCollisionEnter2D_Work(other);
         }
 
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            OnTriggerEnter2D_Work(other);
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            OnTriggerExit2D_Work(other);
+        }
+
         protected virtual void Awake_Work() {}
         protected virtual void OnEnable_Work() {}
         protected virtual void OnDisable_Work() {}
         protected virtual void FixedUpdate_Work() {}
         protected virtual void OnCollisionEnter2D_Work(Collision2D other) {}
+        protected virtual void OnTriggerEnter2D_Work(Collider2D other) {}
+        protected virtual void OnTriggerExit2D_Work(Collider2D other) {}
 
         internal virtual void SetParentHive(Hive hive)
         {
