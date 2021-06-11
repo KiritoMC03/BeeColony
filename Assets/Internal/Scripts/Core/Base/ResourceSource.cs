@@ -18,7 +18,7 @@ namespace BeeColony.Core
 
         public Resource GetResource()
         {
-            var resource = new Pollen();
+            var resource = new Honeycomb();
             IsEmaciated = true;
             OnEmaciated?.Invoke();
             StartCoroutine(Generate());
