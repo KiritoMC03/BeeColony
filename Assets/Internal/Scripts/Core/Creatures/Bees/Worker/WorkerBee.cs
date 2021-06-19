@@ -62,7 +62,7 @@ namespace BeeColony.Core.Bees
 
         private void GoToResourceSource(ResourceSource source)
         {
-            motor.PhysicalMoveTo(source.transform.position);
+            TryMoveTo(source.transform.position);
         }
         private void GoToParentHive(Hive hive)
         {
@@ -71,7 +71,7 @@ namespace BeeColony.Core.Bees
 
         private void Wander()
         {
-            motor.PhysicalMoveTo(wanderingMode.GetNextPosition(myTransform.position));
+            TryMoveTo(wanderingMode.GetNextPosition(myTransform.position));
         }
 
         internal void SetParentHive(Hive hive)

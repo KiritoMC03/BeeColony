@@ -16,7 +16,7 @@ namespace BeeColony.Core.UI.Birth
         {
             name.text = bee.GetName();
             image.sprite = bee.GetSprite();
-            spawnButton.onClick.AddListener(() => beeSpawner.Spawn(bee));
+            spawnButton.onClick.AddListener(() => beeSpawner.AddToSpawnQueue(bee));
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using BeeColony.Core.Bees;
 using BeeColony.Core.Buildings;
 using UnityEngine;
@@ -12,7 +13,13 @@ namespace BeeColony.Core.Spawners
     {
         [SerializeField] private Hive fromHive;
         [Range(0.05f, 1f)]
-        [SerializeField] private float time = 0.1f;
+        [SerializeField] private float delay = 1f;
+
+        [Header("Flight boundaries.")]
+        [SerializeField] private Vector2 positiveBoundary;
+        [SerializeField] private Vector2 negativeBoundary;
+
+        private Queue<ObjectPooler.ObjectInfo.ObjectType> _spawnQueue;
 
         private void Awake()
         {
@@ -20,49 +27,57 @@ namespace BeeColony.Core.Spawners
             {
                 throw new NullReferenceException("Hive is null.");
             }
+
+            _spawnQueue = new Queue<ObjectPooler.ObjectInfo.ObjectType>();
         }
 
-        private void Start()
+        private void OnEnable()
         {
+            StartCoroutine(SpawnRoutine());
+        }
 
-            StartCoroutine(SpawtRoutine());
-            /*
-            for (int i = 0; i < 100; i++)
-            {
-                SpawnWorker();
-            }*/
+        private void OnDisable()
+        {
+            StopAllCoroutines();
         }
         
-        public void Spawn(Bee bee)
+        public IEnumerator SpawnRoutine()
         {
-            Debug.Log($"Spawn: {bee.Type}");
-            ObjectPooler.Instance.GetObject(bee.Type).GetComponent<Bee>().SetParentHive(fromHive);
+            while (true)
+            {
+                yield return new WaitForSeconds(delay);
+                if (_spawnQueue.Count > 0)
+                {
+                    Spawn(_spawnQueue.Dequeue());
+                }
+            }
+        }
+        
+        public void AddToSpawnQueue(Bee bee)
+        {
+            AddToSpawnQueue(bee.Type);
+        }
+
+        public void AddToSpawnQueue(ObjectPooler.ObjectInfo.ObjectType type)
+        {
+            _spawnQueue.Enqueue(type);
         }
 
         public void SpawnWorker()
         {
-            Spawn(ObjectPooler.ObjectInfo.ObjectType.Worker);
+            _spawnQueue.Enqueue(ObjectPooler.ObjectInfo.ObjectType.Worker);
         }
         
         public void SpawnGuardian()
         {
-            Spawn(ObjectPooler.ObjectInfo.ObjectType.Guardian);
+            _spawnQueue.Enqueue(ObjectPooler.ObjectInfo.ObjectType.Guardian);
         } 
 
         private void Spawn(ObjectPooler.ObjectInfo.ObjectType objectType)
         {
             var bee = ObjectPooler.Instance.GetObject(objectType).GetComponent<Bee>();
             bee.SetParentHive(fromHive);
-        }
-
-        private IEnumerator SpawtRoutine()
-        {
-            for (int i = 0; i < 0; i++)
-            {
-                //Spawn(ObjectPooler.ObjectInfo.BeeType.Guardian);
-                Spawn(ObjectPooler.ObjectInfo.ObjectType.Worker);
-                yield return new WaitForSeconds(time);
-            }
+            bee.SetFlightBoundaries(positiveBoundary, negativeBoundary);
         }
     }
 }

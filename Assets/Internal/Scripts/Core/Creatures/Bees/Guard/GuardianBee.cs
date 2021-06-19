@@ -34,7 +34,7 @@ namespace BeeColony.Core.Bees
                     movementAroundHive.Enable();
                     return;
                 }
-                motor.PhysicalMoveTo(_targetEnemy.Position);
+                TryMoveTo(_targetEnemy.Position);
             }
         }
 

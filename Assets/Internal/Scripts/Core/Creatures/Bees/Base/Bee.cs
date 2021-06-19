@@ -26,6 +26,11 @@ namespace BeeColony.Core.Bees
         protected Rigidbody2D myRigidbody;
         protected Collider2D myCollider;
 
+        protected Vector2 positiveFlightBoundary;
+        protected Vector2 negativeFlightBoundary;
+
+        protected Vector2 nextPosition;
+        
         private void Awake()
         {
             myTransform = transform;
@@ -91,6 +96,29 @@ namespace BeeColony.Core.Bees
         public Sprite GetSprite()
         {
             return spriteRenderer.sprite;
+        }
+
+        public void SetFlightBoundaries(Vector2 positive, Vector2 negative)
+        {
+            positiveFlightBoundary = positive;
+            negativeFlightBoundary = negative;
+        }
+
+        public bool CheckWithinBoundaries(Vector2 position)
+        {
+            return position.x > negativeFlightBoundary.x ||
+                   position.x < positiveFlightBoundary.x ||
+                   position.y > negativeFlightBoundary.y ||
+                   position.y < positiveFlightBoundary.y;
+        }
+
+        protected virtual void TryMoveTo(Vector2 position)
+        {
+            nextPosition = position;
+            if (CheckWithinBoundaries(nextPosition))
+            {
+                motor.PhysicalMoveTo(nextPosition);
+            }
         }
     }
 }
