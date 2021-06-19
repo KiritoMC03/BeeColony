@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Utils;
 
-namespace BeeColony.Core
+namespace BeeColonyCore
 {
     public abstract class Motor : MonoBehaviourBase
     {

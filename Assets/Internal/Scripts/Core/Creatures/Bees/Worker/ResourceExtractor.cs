@@ -1,9 +1,9 @@
-﻿using BeeColony.Core.Bees;
-using BeeColony.Core.Buildings;
+﻿using BeeColonyCore.Bees;
+using BeeColonyCore.Buildings;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace BeeColony.Core.Bees
+namespace BeeColonyCore.Bees
 {
     public class ResourceExtractor : ResourceTransfer
     {

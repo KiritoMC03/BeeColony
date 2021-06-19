@@ -1,8 +1,8 @@
-﻿using BeeColony.Core.Bees;
+﻿using BeeColonyCore.Bees;
 using UnityEngine;
 using Utils;
 
-namespace BeeColony.Core.Bees
+namespace BeeColonyCore.Bees
 {
     public class ResourceTransfer : MonoBehaviourBase
     {

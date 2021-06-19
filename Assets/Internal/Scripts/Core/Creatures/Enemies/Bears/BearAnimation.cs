@@ -1,6 +1,6 @@
 ﻿using Utils;
 
-namespace BeeColony.Core.Enemies
+namespace BeeColonyCore.Enemies
 {
     public class BearAnimation : CreatureAnimation
     {

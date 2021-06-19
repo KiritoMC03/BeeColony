@@ -1,4 +1,4 @@
-﻿using BeeColony.Core;
+﻿using BeeColonyCore;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BeeColony.Core.Resources
+namespace BeeColonyCore.Resources
 {
     public class Pollen : Resource
     {

@@ -1,6 +1,6 @@
 ﻿using Utils;
 
-namespace BeeColony.Core.UI.Birth
+namespace BeeColonyCore.UI.Birth
 {
     public class Menu : MonoBehaviourBase
     {

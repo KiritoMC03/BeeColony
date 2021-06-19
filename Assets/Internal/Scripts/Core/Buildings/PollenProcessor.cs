@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
-using BeeColony.Core.Resources;
+using BeeColonyCore.Resources;
 using UnityEngine;
 using Utils;
 
-namespace BeeColony.Core.Buildings
+namespace BeeColonyCore.Buildings
 {
     public class PollenProcessor : MonoBehaviourBase
     {

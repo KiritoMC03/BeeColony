@@ -1,8 +1,11 @@
-﻿using BeeColony.Core.Bees;
-using BeeColony.Core.Spawners;
+﻿using System;
+using System.Text;
+using BeeColonyCore.Bees;
+using BeeColonyCore.Spawners;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace BeeColony.Core.UI.Birth
+namespace BeeColonyCore.UI.Birth
 {
     public class BeesBirthMenu : Menu
     {
@@ -10,19 +13,32 @@ namespace BeeColony.Core.UI.Birth
         [SerializeField] private Transform birthZone;
         [SerializeField] private BeeBirthElement beeBirthPrefab;
         [SerializeField] private BeeSpawner beeSpawner;
+        [SerializeField] private Text spawnTime;
+
+        private const string SPAWN_TIME_TEXT = " секунда";
 
         private void Start()
         {
             Generate();
         }
 
+        private void OnEnable()
+        {
+            spawnTime.text = beeSpawner.GetDelay() + SPAWN_TIME_TEXT;
+        }
+
         private void Generate()
         {
-            for (int i = 0; i < bees.Length; i++)
+            for (var i = 0; i < bees.Length; i++)
             {
                 var newBee = Instantiate(beeBirthPrefab, birthZone);
                 newBee.Construct(bees[i], beeSpawner);
             }
+        }
+
+        private void SetTexts()
+        {
+            spawnTime.text = beeSpawner.GetDelay() + SPAWN_TIME_TEXT;
         }
     }
 }

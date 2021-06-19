@@ -1,9 +1,9 @@
 ﻿using System;
-using BeeColony.Core.Bees;
+using BeeColonyCore.Bees;
 using Internal.Scripts.Core.Creatures.Enemies;
 using UnityEngine;
 
-namespace BeeColony.Core.Bees
+namespace BeeColonyCore.Bees
 {
     public class GuardianBee : Bee
     {

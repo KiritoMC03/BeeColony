@@ -1,9 +1,9 @@
-﻿using BeeColony.Core.Buildings;
+﻿using BeeColonyCore.Buildings;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
 
-namespace BeeColony.Core.Enemies
+namespace BeeColonyCore.Enemies
 {
     public class BearRadar : MonoBehaviourBase
     {

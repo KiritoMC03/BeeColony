@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Utils;
 
-namespace BeeColony.Core
+namespace BeeColonyCore
 {
     public class ObstacleAvoidant : MonoBehaviourBase
     {

@@ -3,7 +3,7 @@ using Internal.Scripts.Core.Creatures.Enemies;
 using UnityEngine;
 using Utils;
 
-namespace BeeColony.Core.Bees
+namespace BeeColonyCore.Bees
 {
     public class EnemyRadar : MonoBehaviourBase
     {

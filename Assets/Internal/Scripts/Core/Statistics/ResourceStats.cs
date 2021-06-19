@@ -1,5 +1,5 @@
 ﻿using System;
-using BeeColony.Core.Buildings;
+using BeeColonyCore.Buildings;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;

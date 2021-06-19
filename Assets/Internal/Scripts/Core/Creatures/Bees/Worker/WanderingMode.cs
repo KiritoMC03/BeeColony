@@ -3,7 +3,7 @@ using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
 
-namespace BeeColony.Core.Bees
+namespace BeeColonyCore.Bees
 {
     public class WanderingMode : MonoBehaviourBase
     {

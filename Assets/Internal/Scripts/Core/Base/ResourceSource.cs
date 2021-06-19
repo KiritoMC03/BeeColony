@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
-using BeeColony.Core.Resources;
+using BeeColonyCore.Resources;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
 
-namespace BeeColony.Core
+namespace BeeColonyCore
 {
     public abstract class ResourceSource : MonoBehaviourBase
     {

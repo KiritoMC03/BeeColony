@@ -1,8 +1,8 @@
-﻿using BeeColony.Core.Buildings;
+﻿using BeeColonyCore.Buildings;
 using Internal.Scripts.Core.Creatures.Enemies;
 using UnityEngine;
 
-namespace BeeColony.Core.Enemies
+namespace BeeColonyCore.Enemies
 {
     public class Bear : Enemy
     {

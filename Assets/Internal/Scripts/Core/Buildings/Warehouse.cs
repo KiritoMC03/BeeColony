@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using BeeColony.Core.Resources;
+using BeeColonyCore.Resources;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
 
-namespace BeeColony.Core.Buildings
+namespace BeeColonyCore.Buildings
 {
     public class Warehouse : MonoBehaviourBase
     {

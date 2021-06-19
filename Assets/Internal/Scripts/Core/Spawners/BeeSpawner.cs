@@ -1,23 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using BeeColony.Core.Bees;
-using BeeColony.Core.Buildings;
+using BeeColonyCore.Bees;
+using BeeColonyCore.Buildings;
+using BeeColonyCore.Map;
 using UnityEngine;
 using Utils;
 using ObjectPool;
 
-namespace BeeColony.Core.Spawners
+namespace BeeColonyCore.Spawners
 {
     public class BeeSpawner : MonoBehaviourBase
     {
         [SerializeField] private Hive fromHive;
-        [Range(0.05f, 1f)]
+        [Range(0.05f, 20f)]
         [SerializeField] private float delay = 1f;
-
-        [Header("Flight boundaries.")]
-        [SerializeField] private Vector2 positiveBoundary;
-        [SerializeField] private Vector2 negativeBoundary;
+        [SerializeField] private MapBoundaries boundaries;
 
         private Queue<ObjectPooler.ObjectInfo.ObjectType> _spawnQueue;
 
@@ -77,7 +75,9 @@ namespace BeeColony.Core.Spawners
         {
             var bee = ObjectPooler.Instance.GetObject(objectType).GetComponent<Bee>();
             bee.SetParentHive(fromHive);
-            bee.SetFlightBoundaries(positiveBoundary, negativeBoundary);
+            bee.SetFlightBoundaries(boundaries.GetPositive(), boundaries.GetNegative());
         }
+
+        public float GetDelay() => delay;
     }
 }

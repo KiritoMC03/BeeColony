@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using Utils;
 
-namespace BeeColony.Core.Bees
+namespace BeeColonyCore.Bees
 {
     public class SeenEnemyCache : MonoBehaviourBase
     {

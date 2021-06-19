@@ -1,4 +1,4 @@
-﻿namespace BeeColony.Core.Bees
+﻿namespace BeeColonyCore.Bees
 {
     public class BeeMotor : Motor
     {

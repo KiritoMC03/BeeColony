@@ -1,7 +1,7 @@
 using UnityEngine;
 using Utils;
 
-namespace BeeColony.Core.Bees
+namespace BeeColonyCore.Bees
 {
     public class BeeAnimation : CreatureAnimation
     {

@@ -1,8 +1,8 @@
-﻿using BeeColony.Core.Bees;
+﻿using BeeColonyCore.Bees;
 using UnityEngine;
 using Utils;
 
-namespace BeeColony.Core
+namespace BeeColonyCore
 {
     [RequireComponent(typeof(Animator))]
     public class CreatureAnimation : MonoBehaviourBase

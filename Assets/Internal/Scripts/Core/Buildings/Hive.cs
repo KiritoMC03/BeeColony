@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Utils;
 
-namespace BeeColony.Core.Buildings
+namespace BeeColonyCore.Buildings
 {
     public class Hive : MonoBehaviourBase
     {

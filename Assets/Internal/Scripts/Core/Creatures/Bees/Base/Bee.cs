@@ -1,11 +1,11 @@
 ﻿using System;
-using BeeColony.Core.Buildings;
+using BeeColonyCore.Buildings;
 using ObjectPool;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
 
-namespace BeeColony.Core.Bees
+namespace BeeColonyCore.Bees
 {
     public class Bee : MonoBehaviourBase, IPooledObject
     {

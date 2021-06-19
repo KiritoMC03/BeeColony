@@ -4,7 +4,7 @@ using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
 
-namespace BeeColony.Core.Spawners
+namespace BeeColonyCore.Spawners
 {
     public class ResourceSourcesSpawner : MonoBehaviourBase
     {

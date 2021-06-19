@@ -1,7 +1,7 @@
-﻿using BeeColony.Core;
+﻿using BeeColonyCore;
 using Utils;
 
-namespace BeeColony.Core.ResourcesSources
+namespace BeeColonyCore.ResourcesSources
 {
     public class Flower : ResourceSource
     {

@@ -1,8 +1,8 @@
-﻿using BeeColony.Core.Buildings;
+﻿using BeeColonyCore.Buildings;
 using UnityEngine;
 using Utils;
 
-namespace BeeColony.Core.Bees
+namespace BeeColonyCore.Bees
 {
     public class UnknownZone : MonoBehaviourBase
     {

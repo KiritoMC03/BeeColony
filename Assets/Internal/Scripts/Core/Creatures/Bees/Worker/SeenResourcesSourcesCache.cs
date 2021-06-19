@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using Utils;
 using Random = UnityEngine.Random;
 
-namespace BeeColony.Core.Bees
+namespace BeeColonyCore.Bees
 {
     public class SeenResourcesSourcesCache : MonoBehaviourBase
     {

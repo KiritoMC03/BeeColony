@@ -1,6 +1,6 @@
 ﻿using Utils;
 
-namespace BeeColony.Core
+namespace BeeColonyCore
 {
     public abstract class Resource
     {

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections;
-using BeeColony.Core.Bees;
-using BeeColony.Core.Buildings;
-using BeeColony.Core.Enemies;
+using BeeColonyCore.Bees;
+using BeeColonyCore.Buildings;
+using BeeColonyCore.Enemies;
 using ObjectPool;
 using UnityEngine;
 using Utils;
 using PooledObjectType = ObjectPool.ObjectPooler.ObjectInfo.ObjectType;
 
-namespace BeeColony.Core.Spawners
+namespace BeeColonyCore.Spawners
 {
     public class EnemiesSpawner : MonoBehaviourBase
     {

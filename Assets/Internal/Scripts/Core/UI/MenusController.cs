@@ -2,7 +2,7 @@
 using UnityEngine;
 using Utils;
 
-namespace BeeColony.Core.UI.Birth
+namespace BeeColonyCore.UI.Birth
 {
     public class MenusController : MonoBehaviourBase
     {

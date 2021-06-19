@@ -1,4 +1,4 @@
-﻿namespace BeeColony.Core
+﻿namespace BeeColonyCore
 {
     public interface IDamageable
     {

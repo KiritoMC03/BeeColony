@@ -1,10 +1,10 @@
-﻿using BeeColony.Core.Bees;
-using BeeColony.Core.Spawners;
+﻿using BeeColonyCore.Bees;
+using BeeColonyCore.Spawners;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 
-namespace BeeColony.Core.UI.Birth
+namespace BeeColonyCore.UI.Birth
 {
     public class BeeBirthElement : MonoBehaviourBase
     {

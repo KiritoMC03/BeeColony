@@ -1,10 +1,10 @@
 ﻿using System.Collections;
-using BeeColony.Core.Buildings;
+using BeeColonyCore.Buildings;
 using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
 
-namespace BeeColony.Core.Bees
+namespace BeeColonyCore.Bees
 {
     public class MovementAroundHive : MonoBehaviourBase
     {

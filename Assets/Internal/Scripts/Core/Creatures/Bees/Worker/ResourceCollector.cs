@@ -1,10 +1,10 @@
 ﻿using System.Collections;
-using BeeColony.Core.Bees;
+using BeeColonyCore.Bees;
 using UnityEngine;
 using Utils;
 using UnityEngine.Events;
 
-namespace BeeColony.Core.Bees
+namespace BeeColonyCore.Bees
 {
     public class ResourceCollector : ResourceTransfer
     {
