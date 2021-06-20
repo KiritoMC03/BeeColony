@@ -4,6 +4,16 @@ namespace BeeColonyCore
 {
     public abstract class Resource
     {
-        protected float Value = 0f;
+        public int Value { get; protected set; } = 0;
+
+        public void Increase(int value) => Value += value;
+
+        public TResource Decrease<TResource>(int value)
+            where TResource : Resource
+        {
+            Value -= value;
+            if (Value < 0) Value = 0;
+            return (TResource)this;
+        }
     }
 }

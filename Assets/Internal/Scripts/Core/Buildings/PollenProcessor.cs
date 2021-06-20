@@ -10,6 +10,7 @@ namespace BeeColonyCore.Buildings
     {
         [SerializeField] private Warehouse warehouse;
         [SerializeField] private float processDelay = 5f;
+        [SerializeField] private int processingVolume = 5;
 
         private void OnEnable()
         {
@@ -25,10 +26,7 @@ namespace BeeColonyCore.Buildings
         {
             while (true)
             {
-                if (warehouse.GetPollenCount() > 0)
-                {
-                    warehouse.Add(Process(warehouse.ExtractPollen()));
-                }
+                warehouse.Add(Process(warehouse.ExtractNextPollen(processingVolume)));
                 yield return new WaitForSeconds(processDelay);
             }
         }
@@ -37,7 +35,7 @@ namespace BeeColonyCore.Buildings
         {
             if (pollen.Type == Pollen.AvailableType.Flower)
             {
-                return new Comb(Comb.AvailableType.Honey);
+                return new Comb(Comb.AvailableType.Honey, 3);
             }
 
             throw new Exception("Target comb type not found.");

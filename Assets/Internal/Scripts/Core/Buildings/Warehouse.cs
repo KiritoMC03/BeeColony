@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using BeeColonyCore.Buildings.StorageDepartments;
 using BeeColonyCore.Resources;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
+using Random = UnityEngine.Random;
 
 namespace BeeColonyCore.Buildings
 {
@@ -12,8 +14,14 @@ namespace BeeColonyCore.Buildings
         public UnityEvent OnPollenCountChange;
         public UnityEvent OnCombsCountChange;
         
-        private List<Pollen> _pollen = new List<Pollen>();
-        private List<Comb> _combs = new List<Comb>();
+        public List<Comb> _combStorage = new List<Comb>();
+        public List<Pollen> _pollenStorage = new List<Pollen>();
+
+        private void Awake()
+        {
+            _combStorage = new List<Comb>();
+            _pollenStorage = new List<Pollen>();
+        }
 
         public void Add(Resource resource)
         {
@@ -27,42 +35,60 @@ namespace BeeColonyCore.Buildings
             }
         }
 
-        public int GetPollenCount()
-        {
-            return _pollen.Count;
-        }
-
-        public int GetCombsCount()
-        {
-            return _combs.Count;
-        }
-
-        public Pollen ExtractPollen()
-        {
-            var pollen = _pollen[_pollen.Count - 1];
-            _pollen.Remove(pollen);
-            return pollen;
-        }
-
-        public Comb ExtractComb()
-        {
-            var comb = _combs[_combs.Count - 1];
-            _combs.Remove(comb);
-            return comb;
-        }
-
         private void AddPollen(Pollen pollen)
         {
-            _pollen.Add(pollen);
-            OnPollenCountChange?.Invoke();
+            foreach (var currentPollen in _pollenStorage)
+            {
+                if (pollen.Type != currentPollen.Type) continue;
+                Debug.Log($"Pre: {currentPollen.Type} - {currentPollen.Value}");
+                currentPollen.Increase(pollen.Value);
+                Debug.Log($"Post: {currentPollen.Type} - {currentPollen.Value}");
+                OnPollenCountChange?.Invoke();
+                return;
+            }
+
+            CreateStorageDepartment(_pollenStorage, pollen);
         }
         
-
         private void AddComb(Comb comb)
         {
-            _combs.Add(comb);
-            OnCombsCountChange?.Invoke();
-            Debug.Log("A!");
+            foreach (var currentComb in _combStorage)
+            {
+                if (comb.Type != currentComb.Type) continue;
+                Debug.Log($"PreComb: {currentComb.Type} - {currentComb.Value}");
+                currentComb.Increase(comb.Value);
+                Debug.Log($"PostComb: {currentComb.Type} - {currentComb.Value}");
+                OnCombsCountChange?.Invoke();
+                return;
+            }
+
+            CreateStorageDepartment(_combStorage, comb);
+        }
+
+        private void CreateStorageDepartment<ResourceType>(List<ResourceType> storage, ResourceType resource)
+        {
+            storage.Add(resource);
+        }
+
+        public Pollen ExtractNextPollen(int value)
+        {
+            if (_pollenStorage.Count == 0) return new Pollen();
+            
+            var pollenIndex = Random.Range(0, _pollenStorage.Count - 1);
+            return _pollenStorage[pollenIndex].Decrease<Pollen>(value);
+        }
+
+        public int GetCombsCount(Comb.AvailableType type)
+        {
+            foreach (var comb in _combStorage)
+            {
+                if (comb.Type == type)
+                {
+                    return comb.Value;
+                }
+            }
+
+            return 0;
         }
     }
 }

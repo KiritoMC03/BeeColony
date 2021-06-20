@@ -1,5 +1,6 @@
 ﻿using System;
 using BeeColonyCore.Buildings;
+using BeeColonyCore.Resources;
 using ObjectPool;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,6 +18,15 @@ namespace BeeColonyCore.Bees
         [Header("Any Bee")]
         [SerializeField] protected BeeMotor motor;
         [SerializeField] protected Hive parentHive;
+
+        [Serializable]
+        private struct CostData
+        {
+            [SerializeField] private Comb.AvailableType combType;
+            [SerializeField] private int combValue;
+        }
+
+        [SerializeField] private CostData[] cost;
 
         [Header("Description")]
         [SerializeField] protected string name = "Пчела";

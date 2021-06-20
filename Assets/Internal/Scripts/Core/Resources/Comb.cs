@@ -10,10 +10,20 @@ namespace BeeColonyCore.Resources
         {
             Type = type;
         }
+
+        public Comb(AvailableType type, int value)
+        {
+            Type = type;
+            Value = value;
+        }
         
         public enum AvailableType
         {
-            Honey
+            Honey,
+            Icy,
+            Night,
+            Bloody,
+            Steel
         }
     }
 }

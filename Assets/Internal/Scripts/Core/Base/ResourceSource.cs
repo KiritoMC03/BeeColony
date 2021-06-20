@@ -4,6 +4,7 @@ using BeeColonyCore.Resources;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
+using Random = UnityEngine.Random;
 
 namespace BeeColonyCore
 {
@@ -18,7 +19,7 @@ namespace BeeColonyCore
 
         public Resource GetResource()
         {
-            var resource = new Pollen(Pollen.AvailableType.Flower);
+            var resource = new Pollen(Pollen.AvailableType.Flower, Random.Range(1, 5));
             IsEmaciated = true;
             OnEmaciated?.Invoke();
             StartCoroutine(Generate());
