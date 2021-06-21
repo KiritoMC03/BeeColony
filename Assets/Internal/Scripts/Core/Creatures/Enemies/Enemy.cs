@@ -1,12 +1,10 @@
-﻿using System;
-using BeeColonyCore;
-using ObjectPool;
+﻿using ObjectPool;
 using UnityEngine;
 using UnityEngine.Events;
 using PooledObjectType = ObjectPool.ObjectPooler.ObjectInfo.ObjectType;
 using Utils;
 
-namespace Internal.Scripts.Core.Creatures.Enemies
+namespace BeeColonyCore.Enemies
 {
     public class Enemy : MonoBehaviourBase, IPooledObject, IDamageable
     {

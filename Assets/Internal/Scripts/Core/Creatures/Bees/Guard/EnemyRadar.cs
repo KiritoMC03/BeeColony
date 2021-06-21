@@ -1,5 +1,4 @@
-﻿using System;
-using Internal.Scripts.Core.Creatures.Enemies;
+﻿using BeeColonyCore.Enemies;
 using UnityEngine;
 using Utils;
 

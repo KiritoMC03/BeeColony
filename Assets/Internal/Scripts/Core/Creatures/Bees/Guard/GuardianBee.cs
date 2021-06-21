@@ -1,6 +1,4 @@
-﻿using System;
-using BeeColonyCore.Bees;
-using Internal.Scripts.Core.Creatures.Enemies;
+﻿using BeeColonyCore.Enemies;
 using UnityEngine;
 
 namespace BeeColonyCore.Bees

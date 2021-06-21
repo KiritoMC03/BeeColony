@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BeeColonyCore.Resources;
+using UnityEngine;
 using Utils;
 
 namespace BeeColonyCore.Buildings
@@ -26,6 +27,11 @@ namespace BeeColonyCore.Buildings
         public void AcceptResource(Product product)
         {
             warehouse.Add(product);
+        }
+
+        public Comb PullOutComb(int value)
+        {
+            return warehouse.ExtractNextComb(value);
         }
     }
 }

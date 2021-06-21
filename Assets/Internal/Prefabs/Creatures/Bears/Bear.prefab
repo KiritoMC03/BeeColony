@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 7965775987199964853}
   - component: {fileID: 5582194038517875626}
   - component: {fileID: 7029202881889495064}
+  - component: {fileID: 5482242542250530479}
   - component: {fileID: 2098651133147710941}
   - component: {fileID: 4084340649532454019}
   m_Layer: 14
@@ -192,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7965775987199964852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.078, y: -0.337, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7965775986029682293}
@@ -212,9 +213,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b39ed98c1664ee9bdb3b5fe8c3372df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
   type: 2
+  health: 10
   motor: {fileID: 7029202881889495064}
   radar: {fileID: 2233762336750445138}
+  robber: {fileID: 5482242542250530479}
 --- !u!114 &7029202881889495064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +237,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   moveSpeed: 50
+--- !u!114 &5482242542250530479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7965775987199964852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f69fbb97a004fa6b41df025e2cf6fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 3
 --- !u!50 &2098651133147710941
 Rigidbody2D:
   serializedVersion: 4

@@ -1,4 +1,4 @@
-﻿using Internal.Scripts.Core.Creatures.Enemies;
+﻿using BeeColonyCore.Enemies;
 using UnityEngine.Events;
 using Utils;
 

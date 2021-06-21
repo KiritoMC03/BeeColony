@@ -1,5 +1,4 @@
 ﻿using BeeColonyCore.Buildings;
-using Internal.Scripts.Core.Creatures.Enemies;
 using UnityEngine;
 
 namespace BeeColonyCore.Enemies
@@ -8,6 +7,7 @@ namespace BeeColonyCore.Enemies
     {
         [SerializeField] private BearMotor motor;
         [SerializeField] private BearRadar radar;
+        [SerializeField] private BearRobber robber;
 
         private Hive _primaryHive;
         private Hive _tempTargetHive;
@@ -21,17 +21,17 @@ namespace BeeColonyCore.Enemies
 
         protected override void FixedUpdate_Work()
         {
-            if (_seeTempTargetHive)
+            if(robber.IsStealsNow)
+            {
+                motor.Stop();
+            }
+            else if (_seeTempTargetHive)
             {
                 motor.PhysicalMoveTo(_tempTargetHive.Position);
             }
             else if(_seePrimaryHive)
             {
                 motor.PhysicalMoveTo(_primaryHive.Position);
-            }
-            else
-            {
-                motor.Stop();
             }
         }
 

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using Internal.Scripts.Core.Creatures.Enemies;
+using BeeColonyCore.Enemies;
 using UnityEngine;
 using Utils;
 

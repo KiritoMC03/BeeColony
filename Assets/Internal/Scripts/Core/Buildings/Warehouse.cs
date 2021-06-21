@@ -34,10 +34,21 @@ namespace BeeColonyCore.Buildings
 
         public Pollen ExtractNextPollen(int value)
         {
-            if (_pollenStorage.Count == 0) return new Pollen();
+            return ExtractNextProduct(_pollenStorage, value);
+        }
+
+        public Comb ExtractNextComb(int value)
+        {
+            return ExtractNextProduct(_combStorage, value);
+        }
+
+        private TProduct ExtractNextProduct<TProduct>(List<TProduct> storage, int value)
+            where TProduct : Product, new()
+        {
+            if (storage.Count == 0) return new TProduct();
             
-            var pollenIndex = Random.Range(0, _pollenStorage.Count - 1);
-            var temp = _pollenStorage[pollenIndex].Decrease<Pollen>(value);
+            var index = Random.Range(0, storage.Count - 1);
+            var temp = storage[index].Decrease<TProduct>(value);
             return temp;
         }
 
