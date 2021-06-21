@@ -17,7 +17,7 @@ namespace BeeColonyCore
         [SerializeField] protected float timeToGenerate = 3f;
         private int count = 3;
 
-        public Resource GetResource()
+        public Product GetResource()
         {
             var resource = new Pollen(Pollen.AvailableType.Flower, Random.Range(1, 5));
             IsEmaciated = true;

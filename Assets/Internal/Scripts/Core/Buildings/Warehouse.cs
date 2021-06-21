@@ -23,13 +23,13 @@ namespace BeeColonyCore.Buildings
             _pollenStorage = new List<Pollen>();
         }
 
-        public void Add(Resource resource)
+        public void Add(Product product)
         {
-            if (resource is Pollen pollen)
+            if (product is Pollen pollen)
             {
                 AddPollen(pollen);
             }
-            else if (resource is Comb comb)
+            else if (product is Comb comb)
             {
                 AddComb(comb);
             }
@@ -40,9 +40,7 @@ namespace BeeColonyCore.Buildings
             foreach (var currentPollen in _pollenStorage)
             {
                 if (pollen.Type != currentPollen.Type) continue;
-                Debug.Log($"Pre: {currentPollen.Type} - {currentPollen.Value}");
                 currentPollen.Increase(pollen.Value);
-                Debug.Log($"Post: {currentPollen.Type} - {currentPollen.Value}");
                 OnPollenCountChange?.Invoke();
                 return;
             }
@@ -55,9 +53,7 @@ namespace BeeColonyCore.Buildings
             foreach (var currentComb in _combStorage)
             {
                 if (comb.Type != currentComb.Type) continue;
-                Debug.Log($"PreComb: {currentComb.Type} - {currentComb.Value}");
                 currentComb.Increase(comb.Value);
-                Debug.Log($"PostComb: {currentComb.Type} - {currentComb.Value}");
                 OnCombsCountChange?.Invoke();
                 return;
             }
@@ -68,6 +64,7 @@ namespace BeeColonyCore.Buildings
         private void CreateStorageDepartment<ResourceType>(List<ResourceType> storage, ResourceType resource)
         {
             storage.Add(resource);
+            OnCombsCountChange?.Invoke();
         }
 
         public Pollen ExtractNextPollen(int value)
@@ -75,7 +72,8 @@ namespace BeeColonyCore.Buildings
             if (_pollenStorage.Count == 0) return new Pollen();
             
             var pollenIndex = Random.Range(0, _pollenStorage.Count - 1);
-            return _pollenStorage[pollenIndex].Decrease<Pollen>(value);
+            var temp = _pollenStorage[pollenIndex].Decrease<Pollen>(value);
+            return temp;
         }
 
         public int GetCombsCount(Comb.AvailableType type)
@@ -85,6 +83,19 @@ namespace BeeColonyCore.Buildings
                 if (comb.Type == type)
                 {
                     return comb.Value;
+                }
+            }
+
+            return 0;
+        }
+
+        public int GetPollenCount(Pollen.AvailableType type)
+        {
+            foreach (var pollen in _pollenStorage)
+            {
+                if (pollen.Type == type)
+                {
+                    return pollen.Value;
                 }
             }
 

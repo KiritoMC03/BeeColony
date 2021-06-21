@@ -8,22 +8,22 @@ namespace BeeColonyCore.Bees
     {
         public event Action OnStorageChange;
         
-        public bool IsEmpty => _resource == null;
-        public Resource _resource;
+        public bool IsEmpty => _product == null;
+        public Product _product;
 
-        public void Add(Resource resource)
+        public void Add(Product product)
         {
-            if (_resource == null)
+            if (_product == null)
             {
-                _resource = resource;
+                _product = product;
                 OnStorageChange?.Invoke();
             }
         }
 
-        public Resource Extract()
+        public Product Extract()
         {
-            var temp = _resource;
-            _resource = null;
+            var temp = _product;
+            _product = null;
             OnStorageChange?.Invoke();
 
             return temp;

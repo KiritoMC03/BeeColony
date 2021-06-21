@@ -26,7 +26,18 @@ namespace BeeColonyCore.Buildings
         {
             while (true)
             {
-                warehouse.Add(Process(warehouse.ExtractNextPollen(processingVolume)));
+                var extractedPollen = warehouse.ExtractNextPollen(processingVolume);
+                Debug.Log($"Start: {extractedPollen.Type} - {extractedPollen.Value}");
+                if (extractedPollen.Value == processingVolume)
+                {
+                    Debug.Log($"1: {extractedPollen.Type} - {extractedPollen.Value}");
+                    warehouse.Add(Process(extractedPollen));
+                }
+                else if (extractedPollen.Value < processingVolume && extractedPollen.Value != 0)
+                {
+                    Debug.Log($"3: {extractedPollen.Type} - {extractedPollen.Value}");
+                    warehouse.Add(extractedPollen);
+                }
                 yield return new WaitForSeconds(processDelay);
             }
         }
@@ -35,7 +46,7 @@ namespace BeeColonyCore.Buildings
         {
             if (pollen.Type == Pollen.AvailableType.Flower)
             {
-                return new Comb(Comb.AvailableType.Honey, 3);
+                return new Comb(Comb.AvailableType.Flower, 3);
             }
 
             throw new Exception("Target comb type not found.");

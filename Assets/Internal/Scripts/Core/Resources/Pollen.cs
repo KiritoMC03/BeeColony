@@ -2,34 +2,15 @@
 
 namespace BeeColonyCore.Resources
 {
-    public class Pollen : Resource
+    public class Pollen : Product
     {
-        public AvailableType Type;
-        
-        public Pollen()
+        public Pollen() : base()
         {
-            Type = AvailableType.Flower;
-            Value = 0;
+            
         }
         
-        public Pollen(AvailableType type)
+        public Pollen(AvailableType type, int value) : base(type, value)
         {
-            Type = type;
-        }
-
-        public Pollen(Pollen.AvailableType type, int value)
-        {
-            Type = type;
-            Value = value;
-        }
-
-        public enum AvailableType
-        {
-            Flower,
-            Night,
-            Icy,
-            Bloody,
-            Steel
         }
     }
 }

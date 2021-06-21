@@ -2,28 +2,15 @@
 
 namespace BeeColonyCore.Resources
 {
-    public class Comb : Resource
+    public class Comb : Product
     {
-        public AvailableType Type { get; private set; }
-
-        public Comb(AvailableType type)
+        public Comb() : base()
         {
-            Type = type;
-        }
-
-        public Comb(AvailableType type, int value)
-        {
-            Type = type;
-            Value = value;
+            
         }
         
-        public enum AvailableType
+        public Comb(AvailableType type, int value) : base(type, value)
         {
-            Honey,
-            Icy,
-            Night,
-            Bloody,
-            Steel
         }
     }
 }

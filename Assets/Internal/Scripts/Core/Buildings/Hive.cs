@@ -23,9 +23,9 @@ namespace BeeColonyCore.Buildings
             _transform = transform;
         }
 
-        public void AcceptResource(Resource resource)
+        public void AcceptResource(Product product)
         {
-            warehouse.Add(resource);
+            warehouse.Add(product);
         }
     }
 }
