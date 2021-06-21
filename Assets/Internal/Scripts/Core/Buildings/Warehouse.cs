@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using BeeColonyCore.Buildings.StorageDepartments;
+﻿using System.Collections.Generic;
 using BeeColonyCore.Resources;
-using UnityEngine;
 using UnityEngine.Events;
 using Utils;
 using Random = UnityEngine.Random;
@@ -14,8 +11,8 @@ namespace BeeColonyCore.Buildings
         public UnityEvent OnPollenCountChange;
         public UnityEvent OnCombsCountChange;
         
-        public List<Comb> _combStorage = new List<Comb>();
-        public List<Pollen> _pollenStorage = new List<Pollen>();
+        private List<Comb> _combStorage = new List<Comb>();
+        private List<Pollen> _pollenStorage = new List<Pollen>();
 
         private void Awake()
         {
@@ -27,44 +24,12 @@ namespace BeeColonyCore.Buildings
         {
             if (product is Pollen pollen)
             {
-                AddPollen(pollen);
+                Send(_pollenStorage, pollen);
             }
             else if (product is Comb comb)
             {
-                AddComb(comb);
+                Send(_combStorage, comb);
             }
-        }
-
-        private void AddPollen(Pollen pollen)
-        {
-            foreach (var currentPollen in _pollenStorage)
-            {
-                if (pollen.Type != currentPollen.Type) continue;
-                currentPollen.Increase(pollen.Value);
-                OnPollenCountChange?.Invoke();
-                return;
-            }
-
-            CreateStorageDepartment(_pollenStorage, pollen);
-        }
-        
-        private void AddComb(Comb comb)
-        {
-            foreach (var currentComb in _combStorage)
-            {
-                if (comb.Type != currentComb.Type) continue;
-                currentComb.Increase(comb.Value);
-                OnCombsCountChange?.Invoke();
-                return;
-            }
-
-            CreateStorageDepartment(_combStorage, comb);
-        }
-
-        private void CreateStorageDepartment<ResourceType>(List<ResourceType> storage, ResourceType resource)
-        {
-            storage.Add(resource);
-            OnCombsCountChange?.Invoke();
         }
 
         public Pollen ExtractNextPollen(int value)
@@ -76,30 +41,48 @@ namespace BeeColonyCore.Buildings
             return temp;
         }
 
-        public int GetCombsCount(Comb.AvailableType type)
+        public int GetCombsCount(Product.AvailableType type)
         {
-            foreach (var comb in _combStorage)
+            return GetCount(type, _combStorage);
+        }
+
+        public int GetPollenCount(Product.AvailableType type)
+        {
+            return GetCount(type, _pollenStorage);
+        }
+
+        private int GetCount<TProduct>(Product.AvailableType type, List<TProduct> storage)
+            where TProduct : Product
+        {
+            foreach (var product in storage)
             {
-                if (comb.Type == type)
+                if (product.Type == type)
                 {
-                    return comb.Value;
+                    return product.Value;
                 }
             }
 
             return 0;
         }
 
-        public int GetPollenCount(Pollen.AvailableType type)
+        private void Send<TProduct>(List<TProduct> storage, TProduct product)
+            where TProduct : Product
         {
-            foreach (var pollen in _pollenStorage)
+            foreach (var currentProduct in storage)
             {
-                if (pollen.Type == type)
-                {
-                    return pollen.Value;
-                }
+                if (product.Type != currentProduct.Type) continue;
+                currentProduct.Increase(product.Value);
+                OnPollenCountChange?.Invoke();
+                return;
             }
 
-            return 0;
+            CreateStorageDepartment(storage, product);
+        }
+
+        private void CreateStorageDepartment<ResourceType>(List<ResourceType> storage, ResourceType resource)
+        {
+            storage.Add(resource);
+            OnCombsCountChange?.Invoke();
         }
     }
 }
