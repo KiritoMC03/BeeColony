@@ -27,15 +27,12 @@ namespace BeeColonyCore.Buildings
             while (true)
             {
                 var extractedPollen = warehouse.ExtractNextPollen(processingVolume);
-                Debug.Log($"Start: {extractedPollen.Type} - {extractedPollen.Value}");
                 if (extractedPollen.Value == processingVolume)
                 {
-                    Debug.Log($"1: {extractedPollen.Type} - {extractedPollen.Value}");
                     warehouse.Add(Process(extractedPollen));
                 }
                 else if (extractedPollen.Value < processingVolume && extractedPollen.Value != 0)
                 {
-                    Debug.Log($"3: {extractedPollen.Type} - {extractedPollen.Value}");
                     warehouse.Add(extractedPollen);
                 }
                 yield return new WaitForSeconds(processDelay);
